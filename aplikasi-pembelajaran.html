@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Pembelajaran | Mrs. Nuri</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF8EE;
+  --honey:#FFC94A;
+  --coral:#FF8C7A;
+  --mint:#A9DFC9;
+  --sky:#9FD8E8;
+  --navy:#27314F;
+  --navy-soft:#4A5578;
+  --navy-muted:#8892AB;
+  --white:#FFFFFF;
+  --border:#E8EAF0;
+  --bg-soft:#F7F8FB;
+  --font-display:'Fredoka',sans-serif;
+  --font-body:'Poppins',sans-serif;
+  --radius:16px;
+  --shadow:0 4px 24px -8px rgba(39,49,79,0.14);
+  --shadow-lg:0 12px 40px -12px rgba(39,49,79,0.22);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-height:100vh;}
+
+/* ── SVG ICON HELPER ── */
+.icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.icon svg{display:block;}
+
+/* ══════════════════════════════
+   LOGIN PAGE
+══════════════════════════════ */
+#loginPage{
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;padding:20px;
+  background:linear-gradient(135deg,#ede5f5 0%,#ddeef8 55%,#faeade 100%);
+  position:relative;overflow:hidden;
+}
+.lb{position:absolute;border-radius:50%;opacity:0.35;}
+.lb1{width:420px;height:420px;background:var(--honey);top:-160px;right:-130px;}
+.lb2{width:300px;height:300px;background:var(--coral);bottom:-100px;left:-80px;}
+.lb3{width:160px;height:160px;background:var(--mint);top:35%;left:6%;}
+
+.login-card{
+  position:relative;z-index:2;
+  background:rgba(255,255,255,0.97);
+  border-radius:24px;padding:44px 40px;
+  width:100%;max-width:410px;
+  box-shadow:var(--shadow-lg);
+}
+
+.login-brand{text-align:center;margin-bottom:30px;}
+.login-brand-icon{
+  width:60px;height:60px;border-radius:18px;
+  background:var(--navy);display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+}
+.login-brand h1{font-family:var(--font-display);font-size:1.55rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.login-brand p{font-size:0.78rem;color:var(--navy-muted);line-height:1.5;}
+
+/* Role tabs */
+.role-tabs{display:flex;gap:6px;background:var(--bg-soft);border-radius:12px;padding:4px;margin-bottom:22px;}
+.role-tab{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px 8px;border-radius:9px;cursor:pointer;
+  font-size:13px;font-weight:600;color:var(--navy-muted);
+  transition:all 0.2s;user-select:none;border:2px solid transparent;
+}
+.role-tab.active{font-weight:700;box-shadow:0 3px 10px -2px rgba(0,0,0,0.15);}
+#tabAdmin.active{background:#FF8C7A;color:#fff;border-color:#e07062;}
+#tabSiswa.active{background:#27314F;color:#fff;border-color:#1a2238;}
+
+/* Role info */
+.role-info{
+  display:flex;align-items:flex-start;gap:9px;
+  background:var(--bg-soft);border-radius:10px;
+  padding:10px 13px;font-size:12px;color:var(--navy-soft);
+  margin-bottom:20px;line-height:1.55;
+}
+
+/* Form */
+.field{margin-bottom:14px;}
+.field-label{display:block;font-size:11.5px;font-weight:600;color:var(--navy);margin-bottom:6px;letter-spacing:.03em;}
+.field-row{position:relative;}
+.field-input{
+  width:100%;border:1.5px solid var(--border);border-radius:11px;
+  padding:11px 40px 11px 14px;font-size:13.5px;font-family:var(--font-body);
+  outline:none;background:var(--bg-soft);color:var(--navy);transition:border-color .2s,background .2s;
+}
+.field-input:focus{border-color:var(--coral);background:var(--white);}
+.field-input.err{border-color:#e53e3e;background:#fff5f5;}
+.field-suffix{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  cursor:pointer;color:var(--navy-muted);display:flex;
+}
+.field-suffix:hover{color:var(--navy);}
+
+.login-err{
+  display:none;align-items:center;gap:8px;
+  background:#fff1f0;border:1px solid #fcc;border-radius:9px;
+  padding:9px 13px;font-size:12.5px;color:#c53030;margin-bottom:14px;
+}
+.login-err.show{display:flex;}
+
+.btn-login{
+  width:100%;background:var(--navy);color:var(--white);
+  border:none;border-radius:11px;padding:13px;
+  font-size:14px;font-weight:600;cursor:pointer;
+  font-family:var(--font-body);transition:background .2s,transform .15s;
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;
+}
+.btn-login:hover{background:var(--coral);transform:translateY(-1px);}
+.btn-login:disabled{background:#b0b8c8;cursor:not-allowed;transform:none;}
+
+.login-foot{text-align:center;margin-top:18px;font-size:11.5px;color:var(--navy-muted);}
+.login-foot a{color:var(--coral);text-decoration:none;font-weight:600;}
+
+/* ══════════════════════════════
+   APP PAGE
+══════════════════════════════ */
+#appPage{display:none;}
+
+/* Topbar */
+.topbar{
+  background:rgba(255,248,238,0.94);backdrop-filter:blur(12px);
+  padding:10px 28px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(39,49,79,0.07);position:sticky;top:0;z-index:100;
+}
+.topbar-brand{display:flex;align-items:center;gap:10px;}
+.topbar-brand-icon{
+  width:34px;height:34px;border-radius:10px;
+  background:var(--navy);display:flex;align-items:center;justify-content:center;
+}
+.brand-text{font-family:var(--font-display);font-size:1rem;font-weight:600;color:var(--navy);}
+.brand-sub{display:block;font-family:var(--font-body);font-size:0.66rem;font-weight:400;color:var(--navy-muted);}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+
+.user-chip{
+  display:flex;align-items:center;gap:8px;
+  background:var(--white);border-radius:999px;padding:5px 12px 5px 5px;
+  box-shadow:0 2px 8px -2px rgba(39,49,79,0.1);
+}
+.user-av{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--white);
+}
+.av-admin{background:var(--coral);}
+.av-siswa{background:var(--navy);}
+.user-name{font-size:12.5px;font-weight:600;color:var(--navy);}
+.user-role-label{font-size:10.5px;color:var(--navy-muted);}
+
+.btn-topbar{
+  display:flex;align-items:center;gap:5px;
+  border:1px solid var(--border);background:none;border-radius:9px;
+  padding:6px 13px;font-size:12px;cursor:pointer;color:var(--navy-soft);
+  font-family:var(--font-body);transition:all .18s;
+}
+.btn-topbar:hover{background:#fff0ed;border-color:var(--coral);color:var(--coral);}
+.btn-topbar.home{background:var(--navy);color:var(--white);border-color:var(--navy);text-decoration:none;}
+.btn-topbar.home:hover{background:var(--coral);border-color:var(--coral);}
+
+/* Hero strip */
+.hero-strip{
+  background:linear-gradient(135deg,var(--navy) 0%,#3d4f7a 100%);
+  padding:36px 28px 32px;
+}
+.hero-inner{max-width:920px;margin:0 auto;}
+.role-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  border-radius:999px;padding:4px 12px;font-size:11.5px;font-weight:600;margin-bottom:10px;
+}
+.rp-admin{background:rgba(255,140,122,0.18);color:#ffb3a7;}
+.rp-siswa{background:rgba(159,216,232,0.18);color:#b8e8f5;}
+.hero-strip h1{font-family:var(--font-display);font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:700;color:var(--white);margin-bottom:7px;}
+.hero-strip h1 span{color:var(--honey);}
+.hero-strip p{color:#C9CEE0;font-size:0.88rem;max-width:480px;}
+
+/* Status bar */
+
+
+/* Main */
+.main{max-width:920px;margin:0 auto;padding:22px 28px;}
+.sec-head{display:flex;align-items:center;gap:9px;margin-bottom:18px;}
+.sec-bar{width:3px;height:20px;background:var(--coral);border-radius:2px;}
+.sec-title{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--navy);}
+
+/* Menu grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+.card-wrap{position:relative;}
+.card{
+  background:var(--white);border-radius:var(--radius);padding:18px 10px 14px;
+  cursor:pointer;transition:transform .15s,box-shadow .15s;
+  border-top:3px solid var(--ct);text-align:center;
+  box-shadow:0 2px 10px -4px rgba(39,49,79,0.1);
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.card-icon-wrap{
+  width:48px;height:48px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 10px;background:var(--ci);
+}
+.card-name{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px;}
+.card-desc{font-size:10.5px;color:var(--navy-muted);line-height:1.4;}
+.admin-badge{
+  position:absolute;top:-7px;right:7px;z-index:1;
+  background:var(--navy);color:var(--white);
+  font-size:9px;font-weight:600;padding:2px 8px;border-radius:8px;
+  display:flex;align-items:center;gap:3px;
+}
+
+/* Panel */
+#panelView{display:none;}
+.panel{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);}
+.panel-hd{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.btn-back{
+  display:flex;align-items:center;gap:5px;
+  background:var(--navy);color:var(--white);border:none;border-radius:9px;
+  padding:8px 16px;font-size:13px;cursor:pointer;color:var(--white);font-family:var(--font-body);
+  transition:background .18s;
+}
+.btn-back:hover{background:var(--coral);}
+.panel-title{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--navy);flex:1;}
+.count-chip{background:rgba(255,140,122,0.1);color:var(--coral);font-size:12px;padding:3px 10px;border-radius:10px;font-weight:600;}
+.cat-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(255,201,74,0.12);color:#886200;
+  font-size:11px;padding:4px 11px;border-radius:10px;margin-bottom:14px;font-weight:600;
+}
+
+.toolbar{display:flex;gap:9px;margin-bottom:13px;flex-wrap:wrap;}
+.search-box{
+  flex:1;min-width:160px;display:flex;align-items:center;gap:8px;
+  border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;
+  background:var(--bg-soft);transition:border-color .2s;
+}
+.search-box:focus-within{border-color:var(--coral);background:var(--white);}
+.search-box input{flex:1;border:none;background:none;outline:none;font-size:13px;font-family:var(--font-body);color:var(--navy);}
+.search-box input::placeholder{color:var(--navy-muted);}
+
+.btn-upload{
+  display:flex;align-items:center;gap:7px;
+  background:var(--coral);color:var(--white);border:none;border-radius:10px;
+  padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;
+  font-family:var(--font-body);transition:background .18s;white-space:nowrap;
+}
+.btn-upload:hover{background:#e07062;}
+.btn-upload:disabled{background:#b0b8c8;cursor:not-allowed;}
+
+/* Notice siswa */
+.notice{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(159,216,232,0.12);border:1px solid rgba(159,216,232,0.4);
+  border-radius:10px;padding:10px 14px;font-size:12.5px;color:var(--navy-soft);margin-bottom:13px;
+}
+
+/* Drop area */
+.drop-area{
+  border:2px dashed #d8d4f0;border-radius:14px;padding:30px 20px;
+  text-align:center;cursor:pointer;transition:background .15s,border-color .15s;
+  margin-bottom:13px;
+}
+.drop-area:hover,.drop-area.over{background:rgba(255,140,122,0.04);border-color:var(--coral);}
+.drop-area p{font-size:12.5px;color:var(--navy-muted);margin-top:7px;}
+.drop-area strong{display:block;font-size:13.5px;font-weight:600;color:var(--navy);margin-top:7px;}
+#fileInput{display:none;}
+
+/* Progress */
+.prog-wrap{background:var(--bg-soft);border-radius:10px;padding:11px 14px;margin-bottom:12px;display:none;}
+.prog-text{font-size:12px;color:var(--navy-soft);}
+.prog-track{background:#e0e0e0;border-radius:999px;height:5px;margin-top:7px;overflow:hidden;}
+.prog-bar{height:100%;background:var(--coral);border-radius:999px;width:0%;transition:width .3s;}
+
+/* File list */
+.file-list{display:flex;flex-direction:column;gap:7px;}
+.file-item{
+  display:flex;align-items:center;gap:11px;padding:11px 13px;
+  background:var(--bg-soft);border:1px solid var(--border);
+  border-radius:11px;transition:background .1s;
+}
+.file-item:hover{background:#fff3ef;}
+.file-type-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.ft-pdf{background:#fff1f0;}
+.ft-doc{background:#eef3ff;}
+.ft-ppt{background:#fff5ee;}
+.ft-xls{background:#eeffee;}
+.ft-default{background:var(--bg-soft);}
+.file-info{flex:1;min-width:0;}
+.file-name{font-size:13px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.file-meta{font-size:11px;color:var(--navy-muted);margin-top:2px;}
+.meta-drive{color:#1D9E75;font-weight:600;}
+.meta-local{color:#b07d00;font-weight:600;}
+.file-by{font-size:10.5px;color:var(--navy-muted);}
+.file-acts{display:flex;gap:5px;flex-shrink:0;}
+.btn-act{
+  display:flex;align-items:center;gap:4px;
+  border:1px solid var(--border);background:var(--white);border-radius:8px;
+  padding:5px 10px;font-size:12px;cursor:pointer;color:var(--navy-soft);
+  font-family:var(--font-body);transition:background .1s;white-space:nowrap;
+}
+.btn-act:hover{background:#f0f0f0;}
+.btn-del{color:#e53e3e;border-color:#fcc;}
+.btn-del:hover{background:#fff5f5;}
+
+.empty{text-align:center;padding:40px 20px;color:var(--navy-muted);}
+.empty-icon{margin-bottom:14px;opacity:.5;}
+.empty p{font-size:13px;line-height:1.7;}
+
+/* ── MODALS ── */
+.modal-bg{
+  display:none;position:fixed;inset:0;
+  background:rgba(39,49,79,0.5);z-index:200;
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal-bg.open{display:flex;}
+.modal{background:var(--white);border-radius:20px;width:100%;box-shadow:var(--shadow-lg);}
+
+/* GAS modal dihapus — URL dikonfigurasi langsung di kode */
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.modal-title{font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--navy);}
+.btn-modal-close{background:none;border:none;cursor:pointer;color:var(--navy-muted);display:flex;padding:4px;}
+.btn-modal-close:hover{color:var(--navy);}
+.modal-desc{font-size:12.5px;color:var(--navy-soft);margin-bottom:14px;line-height:1.65;}
+.gas-steps{background:var(--bg-soft);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:12px;line-height:1.85;color:var(--navy-soft);}
+.gas-steps strong{color:var(--navy);}
+.modal-label{display:block;font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+.modal-input{
+  width:100%;border:1.5px solid var(--border);border-radius:10px;
+  padding:10px 13px;font-size:13px;font-family:var(--font-body);
+  outline:none;margin-bottom:16px;
+}
+.modal-input:focus{border-color:var(--coral);}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;}
+.btn-ghost{background:none;border:1px solid var(--border);border-radius:9px;padding:9px 16px;font-size:13px;cursor:pointer;font-family:var(--font-body);color:var(--navy-soft);}
+.btn-ghost:hover{background:var(--bg-soft);}
+.btn-solid{background:var(--navy);color:var(--white);border:none;border-radius:9px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-body);}
+.btn-solid:hover{background:var(--coral);}
+
+/* Viewer modal */
+#viewerModal .modal{max-width:980px;height:88vh;display:flex;flex-direction:column;padding:0;overflow:hidden;}
+.viewer-hd{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--border);background:var(--bg-soft);}
+.viewer-fn{font-size:13px;font-weight:600;color:var(--navy);max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.viewer-acts{display:flex;gap:7px;}
+.btn-v-dl{background:var(--navy);color:var(--white);border:none;border-radius:8px;padding:6px 14px;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.btn-v-dl:hover{background:var(--coral);}
+.btn-v-close{background:#e53e3e;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12.5px;font-weight:600;cursor:pointer;}
+#pdfFrame{flex:1;width:100%;border:none;background:#525659;}
+.viewer-fallback{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:30px;text-align:center;}
+.viewer-fallback p{font-size:13.5px;color:var(--navy-soft);line-height:1.7;}
+.btn-open-ext{background:var(--navy);color:var(--white);border:none;border-radius:11px;padding:11px 24px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:var(--font-body);}
+.btn-open-ext:hover{background:var(--coral);}
+
+/* Segmen kelas */
+.kelas-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.kelas-tab{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 22px;border-radius:999px;cursor:pointer;
+  font-size:13px;font-weight:600;border:2px solid transparent;
+  transition:all .2s;user-select:none;
+}
+.kelas-tab.k7{background:rgba(255,140,122,0.12);color:#c8523e;border-color:rgba(255,140,122,0.3);}
+.kelas-tab.k7.active{background:#FF8C7A;color:#fff;border-color:#e07062;box-shadow:0 4px 14px -4px rgba(255,140,122,0.5);}
+.kelas-tab.k8{background:rgba(127,119,221,0.1);color:#534AB7;border-color:rgba(127,119,221,0.25);}
+.kelas-tab.k8.active{background:#7F77DD;color:#fff;border-color:#534AB7;box-shadow:0 4px 14px -4px rgba(127,119,221,0.5);}
+.kelas-tab.k9{background:rgba(169,223,201,0.15);color:#1D9E75;border-color:rgba(169,223,201,0.4);}
+.kelas-tab.k9.active{background:#1D9E75;color:#fff;border-color:#158058;box-shadow:0 4px 14px -4px rgba(29,158,117,0.4);}
+
+.kelas-grid{display:none;}
+.kelas-grid.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+
+/* Kalender embed */
+.kalender-wrap{background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+.kalender-wrap h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.kalender-embed{width:100%;border:none;border-radius:12px;min-height:500px;}
+.kalender-open-btn{
+  display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  background:var(--navy);color:var(--white);border:none;border-radius:10px;
+  padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;
+  font-family:var(--font-body);transition:background .18s;text-decoration:none;
+}
+.kalender-open-btn:hover{background:var(--coral);}
+
+/* Responsive */
+@media(max-width:600px){
+  .topbar{padding:10px 14px;}
+  .main,.status-wrap{padding-left:14px;padding-right:14px;}
+  .panel{padding:16px;}
+  .login-card{padding:30px 20px;}
+  .user-name,.user-role-label{display:none;}
+  .file-acts{flex-wrap:wrap;}
+  .hero-strip{padding:28px 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG Icons (inline sprite) -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ic-portal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+  </symbol>
+  <symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+  </symbol>
+  <symbol id="ic-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+  </symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+  </symbol>
+  <symbol id="ic-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+    <line x1="1" y1="1" x2="23" y2="23"/>
+  </symbol>
+  <symbol id="ic-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+  </symbol>
+  <symbol id="ic-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+  </symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </symbol>
+  <symbol id="ic-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+  </symbol>
+  <symbol id="ic-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+  </symbol>
+  <symbol id="ic-file-pdf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    <line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="18" x2="15" y2="18"/><line x1="9" y1="12" x2="11" y2="12"/>
+  </symbol>
+  <symbol id="ic-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+  </symbol>
+  <symbol id="ic-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+  </symbol>
+  <symbol id="ic-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+  </symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/>
+    <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/>
+  </symbol>
+  <symbol id="ic-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+    <path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+  </symbol>
+  <symbol id="ic-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </symbol>
+  <symbol id="ic-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+  </symbol>
+  <symbol id="ic-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+  </symbol>
+  <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 18 9 12 15 6"/>
+  </symbol>
+  <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </symbol>
+  <symbol id="ic-cloud-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+  </symbol>
+  <symbol id="ic-admin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+  </symbol>
+  <symbol id="ic-student" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+  </symbol>
+  <!-- menu icons -->
+  <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+  </symbol>
+  <symbol id="ic-module" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+    <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+  </symbol>
+  <symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+  </symbol>
+  <symbol id="ic-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+    <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+  </symbol>
+  <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+  </symbol>
+  <symbol id="ic-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+  </symbol>
+  <symbol id="ic-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+    <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
+  </symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+  </symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+  </symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </symbol>
+  <symbol id="ic-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/>
+    <line x1="10" y1="12" x2="14" y2="12"/>
+  </symbol>
+</svg>
+
+<!-- ══════════════ LOGIN PAGE ══════════════ -->
+<div id="loginPage">
+  <div class="lb lb1"></div><div class="lb lb2"></div><div class="lb lb3"></div>
+
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-brand-icon">
+        <svg width="28" height="28" style="color:#fff"><use href="#ic-portal"/></svg>
+      </div>
+      <h1>Portal Pembelajaran</h1>
+      <p>Mrs. Nuri Frasna Vitara, S.Pd.<br>SMP Muhammadiyah 9 Nagreg</p>
+    </div>
+
+    <div class="role-tabs">
+      <div class="role-tab active" id="tabAdmin" onclick="switchRole('admin')">
+        <svg width="15" height="15" style="color:currentColor"><use href="#ic-admin"/></svg> Admin
+      </div>
+      <div class="role-tab" id="tabSiswa" onclick="switchRole('siswa')">
+        <svg width="15" height="15" style="color:currentColor"><use href="#ic-student"/></svg> Siswa
+      </div>
+    </div>
+
+    <div class="role-info">
+      <svg width="15" height="15" style="color:var(--navy-muted);flex-shrink:0;margin-top:1px"><use href="#ic-info"/></svg>
+      <span id="roleInfoText">Admin dapat mengupload, menghapus, dan mengelola semua materi pembelajaran.</span>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Username</label>
+      <div class="field-row">
+        <input type="text" class="field-input" id="inputUser" placeholder="Masukkan username" autocomplete="username">
+        <span class="field-suffix"><svg width="16" height="16" style="color:currentColor"><use href="#ic-user"/></svg></span>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">Password</label>
+      <div class="field-row">
+        <input type="password" class="field-input" id="inputPass" placeholder="Masukkan password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+        <span class="field-suffix" id="togglePass" onclick="togglePw()" title="Tampilkan password">
+          <svg width="16" height="16" id="eyeIcon" style="color:currentColor"><use href="#ic-eye"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="login-err" id="loginErr">
+      <svg width="15" height="15" style="color:currentColor;flex-shrink:0"><use href="#ic-alert"/></svg>
+      <span id="loginErrMsg">Username atau password salah.</span>
+    </div>
+
+    <button class="btn-login" id="btnLogin" onclick="doLogin()">
+      <svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg>
+      Masuk
+    </button>
+
+    <div class="login-foot">
+      Lupa password? Hubungi <a href="mailto:nurifrasnavitara7@gmail.com">Mrs. Nuri</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ APP PAGE ══════════════ -->
+<div id="appPage">
+
+  <div class="topbar">
+    <div class="topbar-brand">
+      <div class="topbar-brand-icon">
+        <svg width="18" height="18" style="color:#fff"><use href="#ic-portal"/></svg>
+      </div>
+      <div class="brand-text">
+        Portal Pembelajaran
+        <small class="brand-sub">Mrs. Nuri Frasna Vitara, S.Pd.</small>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="user-chip">
+        <div class="user-av" id="userAv">?</div>
+        <div>
+          <div class="user-name" id="userNameTxt">—</div>
+          <div class="user-role-label" id="userRoleTxt">—</div>
+        </div>
+      </div>
+      <button class="btn-topbar" onclick="doLogout()">
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-logout"/></svg> Keluar
+      </button>
+      <a href="index.html" class="btn-topbar home">
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-home"/></svg> Home
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-strip">
+    <div class="hero-inner">
+      <div class="role-pill" id="heroPill"></div>
+      <h1>Materi Belajar <span>Lengkap & Terorganisir</span></h1>
+      <p>Akses semua bahan ajar, modul, soal latihan, dan materi persiapan bahasa di satu tempat.</p>
+    </div>
+  </div>
+
+
+
+  <!-- MENU UTAMA -->
+  <div class="main" id="mainView">
+    <div class="sec-head"><div class="sec-bar"></div><div class="sec-title">Menu Utama</div></div>
+
+    <!-- Kelas Tabs -->
+    <div class="kelas-tabs">
+      <div class="kelas-tab k7 active" onclick="switchKelas('k7')">
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-student"/></svg> Kelas 7
+      </div>
+      <div class="kelas-tab k8" onclick="switchKelas('k8')">
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-student"/></svg> Kelas 8
+      </div>
+      <div class="kelas-tab k9" onclick="switchKelas('k9')">
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-student"/></svg> Kelas 9
+      </div>
+    </div>
+
+    <!-- KELAS 7 -->
+    <div class="kelas-grid active" id="grid-k7">
+      <div class="card-wrap"><div class="card" style="--ct:#FF8C7A;--ci:rgba(255,140,122,0.1)" onclick="openPanel('k7_buku')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#c8523e"><use href="#ic-book"/></svg></div>
+        <div class="card-name">Buku Bahan Ajar</div><div class="card-desc">Buku teks pelajaran</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#9FD8E8;--ci:rgba(159,216,232,0.2)" onclick="openPanel('k7_modul')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#2e7fa0"><use href="#ic-module"/></svg></div>
+        <div class="card-name">Modul Ajar</div><div class="card-desc">Materi pembelajaran lengkap</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#A9DFC9;--ci:rgba(169,223,201,0.2)" onclick="openPanel('k7_cp')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#1D9E75"><use href="#ic-target"/></svg></div>
+        <div class="card-name">Capaian Pembelajaran</div><div class="card-desc">CP Kelas 7</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#FFC94A;--ci:rgba(255,201,74,0.15)" onclick="openPanel('k7_atp')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#a07400"><use href="#ic-list"/></svg></div>
+        <div class="card-name">ATP</div><div class="card-desc">Alur Tujuan Pembelajaran</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#A9DFC9;--ci:rgba(169,223,201,0.2)" onclick="openPanel('k7_prota')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#1D9E75"><use href="#ic-chart"/></svg></div>
+        <div class="card-name">Prota & Promes</div><div class="card-desc">Program semester & tahun</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#7F77DD;--ci:rgba(127,119,221,0.12)" onclick="openPanel('k7_bank')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#534AB7"><use href="#ic-note"/></svg></div>
+        <div class="card-name">Bank Soal</div><div class="card-desc">Kumpulan soal & kunci</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#FF8C7A;--ci:rgba(255,140,122,0.1)" onclick="openPanel('k7_penilaian')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#c8523e"><use href="#ic-check"/></svg></div>
+        <div class="card-name">Penilaian</div><div class="card-desc">Instrumen & rubrik</div>
+      </div></div>
+    </div>
+
+    <!-- KELAS 8 -->
+    <div class="kelas-grid" id="grid-k8">
+      <div class="card-wrap"><div class="card" style="--ct:#FF8C7A;--ci:rgba(255,140,122,0.1)" onclick="openPanel('k8_buku')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#c8523e"><use href="#ic-book"/></svg></div>
+        <div class="card-name">Buku Bahan Ajar</div><div class="card-desc">Buku teks pelajaran</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#9FD8E8;--ci:rgba(159,216,232,0.2)" onclick="openPanel('k8_modul')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#2e7fa0"><use href="#ic-module"/></svg></div>
+        <div class="card-name">Modul Ajar</div><div class="card-desc">Materi pembelajaran lengkap</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#A9DFC9;--ci:rgba(169,223,201,0.2)" onclick="openPanel('k8_cp')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#1D9E75"><use href="#ic-target"/></svg></div>
+        <div class="card-name">Capaian Pembelajaran</div><div class="card-desc">CP Kelas 8</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#FFC94A;--ci:rgba(255,201,74,0.15)" onclick="openPanel('k8_atp')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#a07400"><use href="#ic-list"/></svg></div>
+        <div class="card-name">ATP</div><div class="card-desc">Alur Tujuan Pembelajaran</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#A9DFC9;--ci:rgba(169,223,201,0.2)" onclick="openPanel('k8_prota')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#1D9E75"><use href="#ic-chart"/></svg></div>
+        <div class="card-name">Prota & Promes</div><div class="card-desc">Program semester & tahun</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#7F77DD;--ci:rgba(127,119,221,0.12)" onclick="openPanel('k8_bank')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#534AB7"><use href="#ic-note"/></svg></div>
+        <div class="card-name">Bank Soal</div><div class="card-desc">Kumpulan soal & kunci</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#FF8C7A;--ci:rgba(255,140,122,0.1)" onclick="openPanel('k8_penilaian')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#c8523e"><use href="#ic-check"/></svg></div>
+        <div class="card-name">Penilaian</div><div class="card-desc">Instrumen & rubrik</div>
+      </div></div>
+    </div>
+
+    <!-- KELAS 9 -->
+    <div class="kelas-grid" id="grid-k9">
+      <div class="card-wrap"><div class="card" style="--ct:#FF8C7A;--ci:rgba(255,140,122,0.1)" onclick="openPanel('k9_buku')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#c8523e"><use href="#ic-book"/></svg></div>
+        <div class="card-name">Buku Bahan Ajar</div><div class="card-desc">Buku teks pelajaran</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#9FD8E8;--ci:rgba(159,216,232,0.2)" onclick="openPanel('k9_modul')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#2e7fa0"><use href="#ic-module"/></svg></div>
+        <div class="card-name">Modul Ajar</div><div class="card-desc">Materi pembelajaran lengkap</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#A9DFC9;--ci:rgba(169,223,201,0.2)" onclick="openPanel('k9_cp')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#1D9E75"><use href="#ic-target"/></svg></div>
+        <div class="card-name">Capaian Pembelajaran</div><div class="card-desc">CP Kelas 9</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#FFC94A;--ci:rgba(255,201,74,0.15)" onclick="openPanel('k9_atp')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#a07400"><use href="#ic-list"/></svg></div>
+        <div class="card-name">ATP</div><div class="card-desc">Alur Tujuan Pembelajaran</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#A9DFC9;--ci:rgba(169,223,201,0.2)" onclick="openPanel('k9_prota')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#1D9E75"><use href="#ic-chart"/></svg></div>
+        <div class="card-name">Prota & Promes</div><div class="card-desc">Program semester & tahun</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#7F77DD;--ci:rgba(127,119,221,0.12)" onclick="openPanel('k9_bank')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#534AB7"><use href="#ic-note"/></svg></div>
+        <div class="card-name">Bank Soal</div><div class="card-desc">Kumpulan soal & kunci</div>
+      </div></div>
+      <div class="card-wrap"><div class="card" style="--ct:#FF8C7A;--ci:rgba(255,140,122,0.1)" onclick="openPanel('k9_penilaian')">
+        <div class="card-icon-wrap"><svg width="22" height="22" style="color:#c8523e"><use href="#ic-check"/></svg></div>
+        <div class="card-name">Penilaian</div><div class="card-desc">Instrumen & rubrik</div>
+      </div></div>
+    </div>
+
+    <!-- KALENDER AKADEMIK -->
+    <div class="sec-head" style="margin-top:28px"><div class="sec-bar"></div><div class="sec-title">Kalender Akademik</div></div>
+    <div class="kalender-wrap">
+      <h3>
+        <svg width="18" height="18" style="color:var(--coral)"><use href="#ic-calendar"/></svg>
+        Jadwal Tahun Ajaran 2025/2026
+      </h3>
+      <!--
+        CARA EMBED GOOGLE CALENDAR:
+        1. Buka calendar.google.com
+        2. Klik titik tiga di samping kalender → Settings and sharing
+        3. Scroll ke "Integrate calendar" → salin kode embed (src="...")
+        4. Ganti nilai src pada iframe di bawah dengan URL kalender Anda
+      -->
+      <iframe
+        class="kalender-embed"
+        src="https://calendar.google.com/calendar/embed?src=GANTI_DENGAN_CALENDAR_ID%40group.calendar.google.com&ctz=Asia%2FJakarta&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&hl=id"
+        frameborder="0"
+        scrolling="no"
+        title="Kalender Akademik"
+      ></iframe>
+      <a class="kalender-open-btn" href="https://calendar.google.com" target="_blank">
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-external"/></svg>
+        Buka di Google Calendar
+      </a>
+    </div>
+
+    <!-- Dokumen Pribadi (admin only) -->
+    <div class="sec-head" id="dokSecHead" style="margin-top:28px;display:none"><div class="sec-bar"></div><div class="sec-title">Lainnya</div></div>
+    <div class="kelas-grid active" id="dokGrid" style="display:none">
+      <div class="card-wrap" style="position:relative">
+        <div class="admin-badge" id="dokumenBadge">
+          <svg width="10" height="10" style="color:currentColor"><use href="#ic-lock"/></svg> Admin
+        </div>
+        <div class="card" style="--ct:#27314F;--ci:rgba(39,49,79,0.08)" onclick="openPanel('dokumen')">
+          <div class="card-icon-wrap"><svg width="22" height="22" style="color:#27314F"><use href="#ic-archive"/></svg></div>
+          <div class="card-name">Dokumen Pribadi</div><div class="card-desc">Arsip & data pribadi</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PANEL VIEW -->
+  <div class="main" id="panelView">
+    <div class="panel">
+      <div class="panel-hd">
+        <button class="btn-back" onclick="closePanel()">
+          <svg width="15" height="15" style="color:currentColor"><use href="#ic-back"/></svg> Kembali
+        </button>
+        <div class="panel-title" id="panelTitle">—</div>
+        <span class="count-chip" id="fileCount">0 file</span>
+      </div>
+
+      <div class="cat-chip">
+        <svg width="12" height="12" style="color:currentColor"><use href="#ic-folder"/></svg>
+        <span id="panelCategory">—</span>
+      </div>
+
+      <div class="notice" id="siswaNotice" style="display:none">
+        <svg width="15" height="15" style="color:#2e7fa0;flex-shrink:0"><use href="#ic-info"/></svg>
+        Anda login sebagai <strong style="margin:0 3px">Siswa</strong> — hanya bisa melihat dan mendownload materi.
+      </div>
+
+      <!-- Admin toolbar -->
+      <div class="toolbar" id="adminToolbar">
+        <div class="search-box">
+          <svg width="15" height="15" style="color:var(--navy-muted)"><use href="#ic-search"/></svg>
+          <input type="text" id="searchAdmin" placeholder="Cari materi..." oninput="renderFiles(this.value)">
+        </div>
+        <button class="btn-upload" id="btnUpload" onclick="document.getElementById('fileInput').click()">
+          <svg width="15" height="15" style="color:currentColor"><use href="#ic-upload"/></svg>
+          Upload File
+        </button>
+      </div>
+
+      <!-- Siswa toolbar -->
+      <div class="toolbar" id="siswaToolbar" style="display:none">
+        <div class="search-box">
+          <svg width="15" height="15" style="color:var(--navy-muted)"><use href="#ic-search"/></svg>
+          <input type="text" id="searchSiswa" placeholder="Cari materi..." oninput="renderFiles(this.value)">
+        </div>
+      </div>
+
+      <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" multiple onchange="handleUpload(event)">
+
+      <!-- Progress -->
+      <div class="prog-wrap" id="progWrap">
+        <div class="prog-text" id="progText">Mengupload file...</div>
+        <div class="prog-track"><div class="prog-bar" id="progBar"></div></div>
+      </div>
+
+      <!-- Drop area (admin only) -->
+      <div class="drop-area" id="dropArea" onclick="document.getElementById('fileInput').click()">
+        <svg width="36" height="36" style="color:var(--navy-muted);opacity:.5"><use href="#ic-cloud-up"/></svg>
+        <strong>Klik atau seret file ke sini</strong>
+        <p>Format: PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX</p>
+      </div>
+
+      <div class="file-list" id="fileList"></div>
+    </div>
+  </div>
+
+
+
+  <!-- VIEWER MODAL -->
+  <div class="modal-bg" id="viewerModal">
+    <div class="modal" style="max-width:980px;height:88vh;display:flex;flex-direction:column;padding:0;overflow:hidden;">
+      <div class="viewer-hd">
+        <div class="viewer-fn" id="viewerFn">—</div>
+        <div class="viewer-acts">
+          <button class="btn-v-dl" id="btnDl">
+            <svg width="14" height="14" style="color:currentColor"><use href="#ic-download"/></svg> Download
+          </button>
+          <button class="btn-v-close" onclick="closeViewer()">Tutup</button>
+        </div>
+      </div>
+      <iframe id="pdfFrame" title="PDF Viewer"></iframe>
+      <div class="viewer-fallback" id="viewerFallback" style="display:none">
+        <svg width="48" height="48" style="color:var(--navy-muted);opacity:.4"><use href="#ic-file"/></svg>
+        <p>Format ini tidak dapat ditampilkan langsung di browser.<br>Gunakan tombol di bawah untuk mengunduh file.</p>
+        <button class="btn-open-ext" id="btnOpenExt">
+          <svg width="15" height="15" style="color:currentColor;vertical-align:middle;margin-right:4px"><use href="#ic-download"/></svg>
+          Download File
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+// ─────────────────────────────
+// AKUN — ubah sesuai kebutuhan
+// ─────────────────────────────
+const ACCOUNTS = {
+  admin: [
+    { username:'admin', password:'nuri2026',  name:'Mrs. Nuri Frasna Vitara' },
+    { username:'nurifrasna_',  password:'nuri13tommy06',  name:'Mrs. Nuri Frasna Vitara' }
+  ],
+  siswa: [
+    { username:'siswa', password:'belajar123', name:'Siswa' },
+    { username:'murid', password:'sekolah123', name:'Murid' }
+    // Tambah siswa: { username:'nama', password:'pass', name:'Nama Lengkap' }
+  ]
+};
+
+// ─────────────────────────────────────────────────────────
+// KONFIGURASI GOOGLE APPS SCRIPT
+// Ganti URL di bawah dengan URL deployment GAS Anda
+// ─────────────────────────────────────────────────────────
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw82Fi6PZwAayTAuYyYvln3-oi7qZZkdxe3-VGCfpYDANC3maSXw2PEz0vYYyf6WQth/exec';
+// Contoh:
+// const GAS_URL = 'https://script.google.com/macros/s/AKfycb.../exec';
+
+const FILES_KEY   = 'nuri_files';
+const SESSION_KEY = 'nuri_session';
+
+const menus = {};
+['k7','k8','k9'].forEach(k => {
+  const label = k==='k7'?'7':k==='k8'?'8':'9';
+  menus[k+'_buku']     = {title:`Buku Bahan Ajar — Kelas ${label}`,    cat:`Buku Teks Kelas ${label}`};
+  menus[k+'_modul']    = {title:`Modul Ajar — Kelas ${label}`,         cat:`Materi Kelas ${label}`};
+  menus[k+'_cp']       = {title:`Capaian Pembelajaran — Kelas ${label}`,cat:`CP Kelas ${label}`};
+  menus[k+'_atp']      = {title:`ATP — Kelas ${label}`,                cat:`Alur Tujuan Kelas ${label}`};
+  menus[k+'_prota']    = {title:`Prota & Promes — Kelas ${label}`,     cat:`Program Kelas ${label}`};
+  menus[k+'_bank']     = {title:`Bank Soal — Kelas ${label}`,          cat:`Soal Kelas ${label}`};
+  menus[k+'_penilaian']= {title:`Penilaian — Kelas ${label}`,          cat:`Instrumen Kelas ${label}`};
+});
+menus['dokumen'] = {title:'Dokumen Pribadi', cat:'Arsip Pribadi'};
+
+let store   = {};
+let current = '';
+let session = null;
+let pwVisible = false;
+
+// ── LOGIN ──
+function switchRole(r) {
+  document.getElementById('tabAdmin').classList.toggle('active', r==='admin');
+  document.getElementById('tabSiswa').classList.toggle('active', r==='siswa');
+  document.getElementById('roleInfoText').textContent = r==='admin'
+    ? 'Admin dapat mengupload, menghapus, dan mengelola semua materi pembelajaran.'
+    : 'Siswa hanya dapat melihat dan mendownload materi yang telah diunggah.';
+  document.getElementById('inputUser').dataset.role = r;
+  clearErr();
+}
+
+function togglePw() {
+  pwVisible = !pwVisible;
+  const inp = document.getElementById('inputPass');
+  inp.type = pwVisible ? 'text' : 'password';
+  document.getElementById('eyeIcon').firstElementChild.setAttribute('href', pwVisible ? '#ic-eye-off' : '#ic-eye');
+}
+
+function showErr(msg) {
+  const el = document.getElementById('loginErr');
+  document.getElementById('loginErrMsg').textContent = msg;
+  el.classList.add('show');
+  ['inputUser','inputPass'].forEach(id => document.getElementById(id).classList.add('err'));
+}
+function clearErr() {
+  document.getElementById('loginErr').classList.remove('show');
+  ['inputUser','inputPass'].forEach(id => document.getElementById(id).classList.remove('err'));
+}
+
+function doLogin() {
+  const u    = document.getElementById('inputUser').value.trim();
+  const p    = document.getElementById('inputPass').value;
+  const role = document.getElementById('tabAdmin').classList.contains('active') ? 'admin' : 'siswa';
+  const btn  = document.getElementById('btnLogin');
+
+  if (!u || !p) { showErr('Username dan password wajib diisi.'); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg> Memeriksa...';
+
+  setTimeout(() => {
+    const found = (ACCOUNTS[role]||[]).find(a => a.username===u && a.password===p);
+    if (found) {
+      session = {role, name:found.name, username:u};
+      try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch(e){}
+      enterApp();
+    } else {
+      showErr('Username atau password salah. Coba lagi.');
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg> Masuk';
+    }
+  }, 500);
+}
+
+function doLogout() {
+  if (!confirm('Yakin ingin keluar?')) return;
+  session = null;
+  try { sessionStorage.removeItem(SESSION_KEY); } catch(e){}
+  closePanel();
+  document.getElementById('appPage').style.display  = 'none';
+  document.getElementById('loginPage').style.display = 'flex';
+  document.getElementById('inputUser').value = '';
+  document.getElementById('inputPass').value = '';
+  document.getElementById('btnLogin').disabled = false;
+  document.getElementById('btnLogin').innerHTML = '<svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg> Masuk';
+  clearErr();
+}
+
+function enterApp() {
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('appPage').style.display   = 'block';
+
+  const isAdmin = session.role === 'admin';
+  const av = document.getElementById('userAv');
+  av.textContent = session.name.charAt(0).toUpperCase();
+  av.className   = 'user-av ' + (isAdmin ? 'av-admin' : 'av-siswa');
+  document.getElementById('userNameTxt').textContent = session.name;
+  document.getElementById('userRoleTxt').textContent = isAdmin ? 'Admin' : 'Siswa';
+
+  const pill = document.getElementById('heroPill');
+  pill.className = 'role-pill ' + (isAdmin ? 'rp-admin' : 'rp-siswa');
+  pill.innerHTML = isAdmin
+    ? '<svg width="12" height="12" style="color:currentColor"><use href="#ic-admin"/></svg> Masuk sebagai Admin'
+    : '<svg width="12" height="12" style="color:currentColor"><use href="#ic-student"/></svg> Masuk sebagai Siswa';
+
+  document.getElementById('dokumenBadge')?.closest('.card-wrap') && (document.getElementById('dokumenBadge').closest('.card-wrap').style.display = isAdmin ? 'block' : 'none');
+  document.getElementById('dokGrid').style.display    = isAdmin ? 'grid' : 'none';
+  document.getElementById('dokSecHead').style.display = isAdmin ? 'flex' : 'none';
+
+  loadStore();
+}
+
+// ── SESSION RESTORE ──
+window.addEventListener('load', () => {
+  try {
+    const s = sessionStorage.getItem(SESSION_KEY);
+    if (s) { session = JSON.parse(s); enterApp(); return; }
+  } catch(e){}
+  document.getElementById('loginPage').style.display = 'flex';
+});
+
+// ── STORE ──
+function loadStore() {
+  try {
+    const s = localStorage.getItem(FILES_KEY);
+    if (s) store = JSON.parse(s);
+    Object.keys(menus).forEach(k => { if (!store[k]) store[k] = []; });
+  } catch(e) { Object.keys(menus).forEach(k => store[k] = []); }
+}
+function saveStore() {
+  try { localStorage.setItem(FILES_KEY, JSON.stringify(store)); } catch(e){}
+}
+
+// ── GAS ──
+function getGasUrl() { return GAS_URL && GAS_URL !== 'GANTI_DENGAN_URL_GAS_ANDA' ? GAS_URL : ''; }
+
+// ── PANEL ──
+function openPanel(key) {
+  if (key==='dokumen' && session.role!=='admin') { alert('Materi ini hanya bisa diakses oleh Admin.'); return; }
+  current = key;
+  const isAdmin = session.role==='admin';
+  document.getElementById('mainView').style.display  = 'none';
+  document.getElementById('panelView').style.display = 'block';
+  document.getElementById('panelTitle').textContent    = menus[key].title;
+  document.getElementById('panelCategory').textContent = menus[key].cat;
+  document.getElementById('siswaNotice').style.display  = isAdmin ? 'none' : 'flex';
+  document.getElementById('adminToolbar').style.display = isAdmin ? 'flex' : 'none';
+  document.getElementById('siswaToolbar').style.display = isAdmin ? 'none' : 'flex';
+  document.getElementById('dropArea').style.display     = isAdmin ? 'block' : 'none';
+  document.getElementById('searchAdmin').value = '';
+  document.getElementById('searchSiswa').value = '';
+  renderFiles();
+}
+function closePanel() {
+  document.getElementById('mainView').style.display  = 'block';
+  document.getElementById('panelView').style.display = 'none';
+}
+
+// ── SWITCH KELAS ──
+function switchKelas(k) {
+  ['k7','k8','k9'].forEach(id => {
+    document.getElementById('grid-'+id).classList.toggle('active', id===k);
+    document.querySelector('.kelas-tab.'+id).classList.toggle('active', id===k);
+  });
+}
+
+// ── UPLOAD ──
+function fileTypeClass(name) {
+  const e = name.split('.').pop().toLowerCase();
+  if (e==='pdf') return 'ft-pdf';
+  if (['doc','docx'].includes(e)) return 'ft-doc';
+  if (['ppt','pptx'].includes(e)) return 'ft-ppt';
+  if (['xls','xlsx'].includes(e)) return 'ft-xls';
+  return 'ft-default';
+}
+function fileIconId(name) {
+  const e = name.split('.').pop().toLowerCase();
+  return e==='pdf' ? 'ic-file-pdf' : 'ic-file';
+}
+function fileIconColor(name) {
+  const e = name.split('.').pop().toLowerCase();
+  if (e==='pdf') return '#e53e3e';
+  if (['doc','docx'].includes(e)) return '#3b7dd8';
+  if (['ppt','pptx'].includes(e)) return '#d84315';
+  if (['xls','xlsx'].includes(e)) return '#2e7d32';
+  return 'var(--navy-muted)';
+}
+function fmtSize(b) { return b>=1048576?(b/1048576).toFixed(1)+' MB':(b/1024).toFixed(0)+' KB'; }
+function toB64(f) { return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); }); }
+
+async function handleUpload(e) {
+  if (session.role!=='admin') return;
+  const files = [...e.target.files]; e.target.value='';
+  if (!files.length) return;
+  const gasUrl=getGasUrl();
+  const pw=document.getElementById('progWrap'), pb=document.getElementById('progBar'), pt=document.getElementById('progText'), bu=document.getElementById('btnUpload');
+  bu.disabled=true; pw.style.display='block';
+
+  for (let i=0;i<files.length;i++) {
+    const f=files[i];
+    pt.textContent=`Mengupload ${i+1}/${files.length}: ${f.name}`;
+    pb.style.width=((i/files.length)*100)+'%';
+    const entry={name:f.name,size:f.size,date:new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}),uploader:session.name,driveUrl:'',driveId:'',localUrl:URL.createObjectURL(f)};
+    if (gasUrl) {
+      try {
+        const b64=await toB64(f);
+        const resp=await fetch(gasUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fileName:f.name,fileData:b64,mimeType:f.type||'application/octet-stream',category:current})});
+        const json=await resp.json();
+        if (json.success){entry.driveUrl=json.viewUrl||'';entry.driveId=json.fileId||'';entry.localUrl='';}
+      } catch(err){console.error(err);}
+    }
+    store[current].push(entry);
+  }
+  saveStore();
+  pb.style.width='100%';
+  pt.textContent=`${files.length} file berhasil diupload.`;
+  setTimeout(()=>{pw.style.display='none';bu.disabled=false;},2000);
+  renderFiles();
+}
+
+// ── RENDER ──
+function renderFiles(filter='') {
+  const list=document.getElementById('fileList');
+  const all=store[current].filter(f=>f.name.toLowerCase().includes(filter.toLowerCase()));
+  document.getElementById('fileCount').textContent=store[current].length+' file';
+  const isAdmin=session.role==='admin';
+
+  if (!all.length) {
+    list.innerHTML=`<div class="empty">
+      <div class="empty-icon"><svg width="44" height="44" style="color:var(--navy-muted)"><use href="#ic-folder"/></svg></div>
+      <p>${isAdmin?'Belum ada materi. Upload file pertama Anda.':'Belum ada materi di kategori ini.<br>Hubungi Mrs. Nuri untuk informasi lebih lanjut.'}</p>
+    </div>`;
+    return;
+  }
+
+  list.innerHTML=all.map(f=>{
+    const ri=store[current].indexOf(f);
+    const hasDrive=!!f.driveUrl, hasLocal=!!f.localUrl, canView=hasDrive||hasLocal;
+    const metaExtra = hasDrive
+      ? '<span class="meta-drive">— Google Drive</span>'
+      : (hasLocal ? '<span class="meta-local">— sesi ini</span>' : '');
+    return `<div class="file-item">
+      <div class="file-type-icon ${fileTypeClass(f.name)}">
+        <svg width="20" height="20" style="color:${fileIconColor(f.name)}"><use href="#${fileIconId(f.name)}"/></svg>
+      </div>
+      <div class="file-info">
+        <div class="file-name" title="${f.name}">${f.name}</div>
+        <div class="file-meta">${fmtSize(f.size)} &bull; ${f.date} ${metaExtra}</div>
+        ${f.uploader?`<div class="file-by">Diupload oleh ${f.uploader}</div>`:''}
+      </div>
+      <div class="file-acts">
+        ${canView?`<button class="btn-act" onclick="viewFile(${ri})">
+          <svg width="13" height="13" style="color:currentColor"><use href="#ic-eye-open"/></svg> Buka
+        </button>`:''}
+        ${hasDrive?`<button class="btn-act" onclick="window.open('${f.driveUrl}','_blank')">
+          <svg width="13" height="13" style="color:currentColor"><use href="#ic-external"/></svg> Drive
+        </button>`:''}
+        ${isAdmin?`<button class="btn-act btn-del" onclick="deleteFile(${ri})">
+          <svg width="13" height="13" style="color:currentColor"><use href="#ic-trash"/></svg>
+        </button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function deleteFile(i) {
+  if (session.role!=='admin') return;
+  if (!confirm('Hapus file "'+store[current][i].name+'"?')) return;
+  const f=store[current][i];
+  if (f.localUrl) URL.revokeObjectURL(f.localUrl);
+  store[current].splice(i,1); saveStore();
+  renderFiles(document.getElementById('searchAdmin').value);
+}
+
+// ── VIEWER ──
+function viewFile(i) {
+  const f=store[current][i];
+  const ext=f.name.split('.').pop().toLowerCase();
+  const url=f.driveUrl||f.localUrl||'';
+  const modal=document.getElementById('viewerModal');
+  const iframe=document.getElementById('pdfFrame');
+  const fallback=document.getElementById('viewerFallback');
+
+  document.getElementById('viewerFn').textContent=f.name;
+  document.getElementById('btnDl').onclick=()=>{ if(f.driveUrl)window.open(f.driveUrl,'_blank'); else if(f.localUrl){const a=document.createElement('a');a.href=f.localUrl;a.download=f.name;a.click();} };
+  document.getElementById('btnOpenExt').onclick=()=>{ if(url)window.open(url,'_blank'); };
+
+  if (ext==='pdf'&&url) {
+    iframe.style.display='block'; fallback.style.display='none';
+    iframe.src=f.driveUrl?f.driveUrl.replace('/view','/preview'):url;
+  } else {
+    iframe.style.display='none'; fallback.style.display='flex'; iframe.src='';
+  }
+  modal.classList.add('open'); document.body.style.overflow='hidden';
+}
+function closeViewer() {
+  document.getElementById('viewerModal').classList.remove('open');
+  document.getElementById('pdfFrame').src='';
+  document.body.style.overflow='';
+}
+
+// Drag & drop
+const da=document.getElementById('dropArea');
+da.addEventListener('dragover',e=>{e.preventDefault();da.classList.add('over');});
+da.addEventListener('dragleave',()=>da.classList.remove('over'));
+da.addEventListener('drop',e=>{
+  e.preventDefault();da.classList.remove('over');
+  if(session&&session.role==='admin'&&e.dataTransfer.files.length)
+    handleUpload({target:{files:[...e.dataTransfer.files],value:''}});
+});
+
+document.getElementById('viewerModal').addEventListener('click',function(e){
+  if(e.target===this) closeViewer();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeViewer(); });
+</script>
+</body>
+</html>
