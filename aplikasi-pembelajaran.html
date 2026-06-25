@@ -911,7 +911,14 @@ const menus = {};
 });
 menus['dokumen'] = {title:'Dokumen Pribadi', cat:'Arsip Pribadi'};
 
-let store   = {};
+let store = (() => {
+  try {
+    const saved = localStorage.getItem(FILES_KEY);
+    return saved ? JSON.parse(saved) : {};
+  } catch(e) { return {}; }
+})();
+
+Object.keys(menus).forEach(k => { if (!store[k]) store[k] = []; });
 let current = '';
 let session = null;
 let pwVisible = false;
