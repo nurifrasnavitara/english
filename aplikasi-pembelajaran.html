@@ -1108,11 +1108,28 @@ async function handleUpload(e) {
     const entry={name:f.name,size:f.size,date:new Date().toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}),uploader:session.name,driveUrl:'',driveId:'',localUrl:URL.createObjectURL(f)};
     if (gasUrl) {
       try {
-        const b64=await toB64(f);
-        const resp=await fetch(gasUrl,{method:'POST',body:JSON.stringify({fileName:f.name,fileData:b64,mimeType:f.type||'application/octet-stream',category:current})});
-        const json=await resp.json();
-        if (json.success){entry.driveUrl=json.viewUrl||'';entry.driveId=json.fileId||'';entry.localUrl='';}
-      } catch(err){console.error(err);}
+  const b64 = await toB64(f);
+  const resp = await fetch(gasUrl, {
+    method: 'POST',
+    redirect: 'follow',
+    body: JSON.stringify({
+      fileName: f.name,
+      fileData: b64,
+      mimeType: f.type || 'application/octet-stream',
+      category: current
+    })
+  });
+  const text = await resp.text();          // ambil sebagai text dulu
+  console.log('GAS response:', text);      // cek di console
+  const json = JSON.parse(text);           // baru parse manual
+  if (json.success) {
+    entry.driveUrl = json.viewUrl  || '';
+    entry.driveId  = json.fileId   || '';
+    entry.localUrl = '';
+  } else {
+    console.error('GAS error:', json.error);
+  }
+} catch(err) { console.error('Upload error:', err); }
     }
     store[current].push(entry);
   }
