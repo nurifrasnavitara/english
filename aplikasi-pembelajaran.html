@@ -309,6 +309,8 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
   font-family:var(--font-body);transition:background .1s;white-space:nowrap;
 }
 .btn-act:hover{background:#f0f0f0;}
+.btn-open{color:#1D9E75;border-color:#b2dfce;}
+.btn-open:hover{background:#eafaf3;}
 .btn-del{color:#e53e3e;border-color:#fcc;}
 .btn-del:hover{background:#fff5f5;}
 
@@ -390,15 +392,62 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
 }
 .kalender-open-btn:hover{background:var(--coral);}
 
-/* Responsive */
-@media(max-width:600px){
+/* ===== RESPONSIVE / MOBILE ===== */
+@media(max-width:768px){
+  /* Topbar */
   .topbar{padding:10px 14px;}
-  .main,.status-wrap{padding-left:14px;padding-right:14px;}
-  .panel{padding:16px;}
-  .login-card{padding:30px 20px;}
   .user-name,.user-role-label{display:none;}
-  .file-acts{flex-wrap:wrap;}
-  .hero-strip{padding:28px 16px;}
+  .topbar-right{gap:8px;}
+
+  /* Hero */
+  .hero-strip{padding:24px 16px;}
+  .hero-strip h1{font-size:20px;}
+  .hero-strip p{font-size:13px;}
+
+  /* Main layout */
+  .main,.status-wrap{padding-left:14px;padding-right:14px;}
+
+  /* Menu grid: 2 kolom di tablet, mobile */
+  .menu-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .menu-card{padding:16px 12px;}
+  .menu-icon{width:40px;height:40px;}
+  .menu-title{font-size:13px;}
+  .menu-count{font-size:11px;}
+
+  /* Panel */
+  .panel{padding:14px;}
+  .panel-header{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:12px;}
+  .panel-header h2{font-size:16px;}
+
+  /* Toolbar: stack search & button */
+  .admin-toolbar,.siswa-toolbar{flex-direction:column;gap:8px;}
+  .search-box{width:100%;}
+  #btnUpload{width:100%;justify-content:center;}
+
+  /* File card: stack vertically on small screens */
+  .file-item{flex-wrap:wrap;gap:8px;padding:10px 12px;}
+  .file-info{min-width:0;flex:1 1 calc(100% - 50px);}
+  .file-name{font-size:12px;white-space:normal;word-break:break-word;}
+  .file-meta{font-size:10.5px;}
+  .file-acts{width:100%;justify-content:flex-end;gap:6px;margin-top:2px;}
+  .btn-act{padding:5px 12px;font-size:11.5px;}
+
+  /* Login card */
+  .login-card{padding:28px 18px;margin:16px;}
+
+  /* Modal PDF viewer */
+  .modal-pdf .modal-card{width:98vw;height:92vh;margin:4vh auto;}
+  .modal-pdf .modal-head{padding:10px 12px;flex-wrap:wrap;gap:6px;}
+  .modal-pdf .modal-title{font-size:12px;max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .modal-pdf .modal-actions{gap:6px;}
+}
+
+@media(max-width:400px){
+  .menu-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .menu-card{padding:12px 8px;}
+  .menu-title{font-size:12px;}
+  .btn-label{display:none;} /* tombol Buka hanya tampil icon di layar sangat kecil */
+  .btn-act{padding:5px 8px;}
 }
 </style>
 </head>
@@ -1205,11 +1254,8 @@ function renderFiles(filter='') {
         ${f.uploader?`<div class="file-by">Diupload oleh ${f.uploader}</div>`:''}
       </div>
       <div class="file-acts">
-        ${canView?`<button class="btn-act" onclick="viewFile(${ri})">
-          <svg width="13" height="13" style="color:currentColor"><use href="#ic-eye-open"/></svg> Buka
-        </button>`:''}
-        ${hasDrive?`<button class="btn-act" onclick="window.open('${f.driveUrl}','_blank')">
-          <svg width="13" height="13" style="color:currentColor"><use href="#ic-external"/></svg> Drive
+        ${canView?`<button class="btn-act btn-open" onclick="window.open('${f.driveUrl||f.localUrl}','_blank')">
+          <svg width="13" height="13" style="color:currentColor"><use href="#ic-eye-open"/></svg> <span class="btn-label">Buka</span>
         </button>`:''}
         ${isAdmin?`<button class="btn-act btn-del" onclick="deleteFile(${ri})">
           <svg width="13" height="13" style="color:currentColor"><use href="#ic-trash"/></svg>
