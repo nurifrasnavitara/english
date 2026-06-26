@@ -1210,15 +1210,20 @@ function viewFile(i) {
 
   if (ext==='pdf'&&url) {
     iframe.style.display='block'; fallback.style.display='none';
-    // Prioritas: previewUrl dari GAS -> bangun dari driveId -> localUrl
-    if (f.previewUrl) {
-      iframe.src = f.previewUrl;
+    // Bangun URL Drive lalu gunakan Google Docs Viewer (lebih andal, bypass X-Frame-Options)
+    let driveFileUrl = '';
+    if (f.driveUrl) {
+      driveFileUrl = f.driveUrl;
     } else if (f.driveId) {
-      iframe.src = 'https://drive.google.com/file/d/' + f.driveId + '/preview';
-    } else if (f.driveUrl) {
-      iframe.src = f.driveUrl.replace(/\/view(\?.*)?$/, '/preview');
+      driveFileUrl = 'https://drive.google.com/file/d/' + f.driveId + '/view';
+    }
+    if (driveFileUrl) {
+      // Google Docs Viewer: tidak terpengaruh X-Frame-Options Drive
+      iframe.src = 'https://docs.google.com/viewer?url=' + encodeURIComponent(driveFileUrl) + '&embedded=true';
+    } else if (f.localUrl) {
+      iframe.src = f.localUrl; // file baru upload (sesi ini saja)
     } else {
-      iframe.src = url;
+      iframe.style.display='none'; fallback.style.display='flex';
     }
   } else {
     iframe.style.display='none'; fallback.style.display='flex'; iframe.src='';
