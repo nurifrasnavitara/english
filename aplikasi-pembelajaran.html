@@ -1017,6 +1017,8 @@ function enterApp() {
 
 // ── SESSION RESTORE ──
 window.addEventListener('load', () => {
+  // Bersihkan localStorage lama agar tidak ada data basi
+  try { localStorage.removeItem('nuri_files'); } catch(e){}
   try {
     const s = sessionStorage.getItem(SESSION_KEY);
     if (s) { session = JSON.parse(s); enterApp(); return; }
@@ -1026,18 +1028,47 @@ window.addEventListener('load', () => {
 
 // ── STORE ──
 function loadStore() {
-  try {
-    const s = localStorage.getItem(FILES_KEY);
-    if (s) store = JSON.parse(s);
-    Object.keys(menus).forEach(k => { if (!store[k]) store[k] = []; });
-  } catch(e) { Object.keys(menus).forEach(k => store[k] = []); }
+  // Inisialisasi store kosong; data asli diambil dari Drive saat panel dibuka
+  Object.keys(menus).forEach(k => { if (!store[k]) store[k] = []; });
 }
 function saveStore() {
-  try { localStorage.setItem(FILES_KEY, JSON.stringify(store)); } catch(e){}
+  // Tidak lagi simpan ke localStorage; Drive adalah sumber kebenaran
 }
 
 // ── GAS ──
 function getGasUrl() { return GAS_URL && GAS_URL !== 'GANTI_DENGAN_URL_GAS_ANDA' ? GAS_URL : ''; }
+
+// ── FETCH FILES FROM DRIVE ──
+async function fetchFilesFromDrive(key) {
+  const gasUrl = getGasUrl();
+  const list = document.getElementById('fileList');
+  list.innerHTML = '<div class="empty"><p>🔄 Memuat file dari Drive...</p></div>';
+  if (!gasUrl) { renderFiles(); return; }
+  try {
+    const resp = await fetch(gasUrl + '?action=list&category=' + encodeURIComponent(key), { redirect:'follow' });
+    const json = await resp.json();
+    if (json.success && json.files.length) {
+      // Merge dengan data lokal (yang baru diupload sesi ini, belum di-refresh)
+      const driveIds = new Set(json.files.map(f => f.driveId));
+      const localOnly = (store[key]||[]).filter(f => f.localUrl && !f.driveId);
+      store[key] = json.files.map(f => ({
+        name:       f.name,
+        size:       f.size,
+        date:       f.date,
+        uploader:   '',
+        driveUrl:   f.driveUrl,
+        previewUrl: f.previewUrl,
+        driveId:    f.driveId,
+        localUrl:   ''
+      })).concat(localOnly);
+    } else if (json.success) {
+      store[key] = [];
+    }
+  } catch(err) {
+    console.error('Fetch Drive error:', err);
+  }
+  renderFiles();
+}
 
 // ── PANEL ──
 function openPanel(key) {
@@ -1054,7 +1085,9 @@ function openPanel(key) {
   document.getElementById('dropArea').style.display     = isAdmin ? 'block' : 'none';
   document.getElementById('searchAdmin').value = '';
   document.getElementById('searchSiswa').value = '';
-  renderFiles();
+  // Reset store kategori ini lalu fetch dari Drive
+  store[key] = [];
+  fetchFilesFromDrive(key);
 }
 function closePanel() {
   document.getElementById('mainView').style.display  = 'block';
@@ -1186,12 +1219,22 @@ function renderFiles(filter='') {
   }).join('');
 }
 
-function deleteFile(i) {
+async function deleteFile(i) {
   if (session.role!=='admin') return;
-  if (!confirm('Hapus file "'+store[current][i].name+'"?')) return;
-  const f=store[current][i];
+  const f = store[current][i];
+  if (!confirm('Hapus file "'+f.name+'"?')) return;
+  // Hapus dari Drive jika punya driveId
+  const gasUrl = getGasUrl();
+  if (gasUrl && f.driveId) {
+    try {
+      await fetch(gasUrl, {
+        method:'POST', redirect:'follow',
+        body: JSON.stringify({ action:'delete', fileId: f.driveId })
+      });
+    } catch(err) { console.error('Delete Drive error:', err); }
+  }
   if (f.localUrl) URL.revokeObjectURL(f.localUrl);
-  store[current].splice(i,1); saveStore();
+  store[current].splice(i,1);
   renderFiles(document.getElementById('searchAdmin').value);
 }
 
