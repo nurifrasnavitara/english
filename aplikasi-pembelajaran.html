@@ -49,7 +49,7 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
 
 .login-card{
   position:relative;z-index:2;
-  background:rgba(255,255,255,0.97);
+  background:#fff;
   border-radius:24px;padding:44px 40px;
   width:100%;max-width:410px;
   box-shadow:var(--shadow-lg);
@@ -213,6 +213,102 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
   background:var(--navy);color:var(--white);
   font-size:9px;font-weight:600;padding:2px 8px;border-radius:8px;
   display:flex;align-items:center;gap:3px;
+}
+
+/* Presensi */
+.presensi-year-card{
+  border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden;
+}
+.presensi-year-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;cursor:pointer;background:#fafafa;
+  font-weight:600;color:var(--navy);font-size:14.5px;
+}
+.presensi-year-head:hover{background:#f3f3f3;}
+.presensi-year-head .chev{transition:transform .2s;}
+.presensi-year-card.open .presensi-year-head .chev{transform:rotate(180deg);}
+.presensi-sem-list{display:none;padding:6px 18px 16px;}
+.presensi-year-card.open .presensi-sem-list{display:block;}
+.presensi-sem-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 14px;border:1px solid var(--border);border-radius:10px;
+  margin-top:8px;font-size:13.5px;color:var(--navy-soft);
+}
+.presensi-sem-item .sem-label{display:flex;align-items:center;gap:8px;font-weight:500;color:var(--navy);}
+.presensi-sem-actions{display:flex;gap:6px;}
+.presensi-btn{
+  display:flex;align-items:center;gap:5px;
+  border:1px solid var(--border);background:#fff;border-radius:8px;
+  padding:6px 12px;font-size:12px;cursor:pointer;color:var(--navy-soft);
+  text-decoration:none;font-family:var(--font-body);transition:all .15s;
+}
+.presensi-btn:hover{background:#f0f0f0;}
+.presensi-btn.edit{background:#27314F;color:#fff;border-color:#27314F;}
+.presensi-btn.edit:hover{background:#3a4669;}
+.presensi-btn.export{color:#1D9E75;border-color:#b2dfce;}
+.presensi-btn.export:hover{background:#eafaf3;}
+.presensi-add-row{
+  display:flex;gap:8px;margin-top:14px;
+}
+.presensi-add-row input{
+  flex:1;border:1px solid var(--border);border-radius:9px;padding:9px 12px;font-size:13px;font-family:var(--font-body);
+}
+.presensi-add-row button{
+  border:none;background:var(--coral);color:#fff;border-radius:9px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;
+}
+
+/* Presensi kelas cards (level 2) */
+.presensi-kelas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px;}
+.presensi-kelas-card{
+  border:1px solid var(--border);border-radius:14px;padding:20px 14px;text-align:center;cursor:pointer;
+  transition:all .15s;background:#fff;
+}
+.presensi-kelas-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--coral);}
+.presensi-kelas-card .num{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--navy);}
+.presensi-kelas-card .lbl{font-size:12px;color:var(--navy-muted);margin-top:2px;}
+
+/* Presensi form toolbar (level 3) */
+.presensi-toolbar{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+  margin-bottom:16px;flex-wrap:wrap;
+}
+.presensi-date-wrap{display:flex;flex-direction:column;gap:4px;}
+.presensi-date-wrap label{font-size:11.5px;font-weight:600;color:var(--navy-soft);}
+.presensi-date-wrap input{
+  border:1px solid var(--border);border-radius:9px;padding:8px 12px;font-size:13px;font-family:var(--font-body);
+}
+
+/* Siswa presensi row */
+.siswa-presensi-row{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:11px 14px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;
+}
+.siswa-presensi-row .siswa-name{font-size:13.5px;font-weight:500;color:var(--navy);}
+.status-btns{display:flex;gap:5px;}
+.status-btn{
+  width:34px;height:30px;border-radius:8px;border:1.5px solid var(--border);
+  background:#fff;font-size:12px;font-weight:700;cursor:pointer;color:var(--navy-muted);
+  transition:all .12s;
+}
+.status-btn.H.active{background:#1D9E75;border-color:#1D9E75;color:#fff;}
+.status-btn.S.active{background:#FFC94A;border-color:#e0ad2f;color:#7a5a00;}
+.status-btn.I.active{background:#7F77DD;border-color:#534AB7;color:#fff;}
+.status-btn.A.active{background:#e53e3e;border-color:#c53030;color:#fff;}
+
+.presensi-save-btn{
+  width:100%;border:none;background:var(--navy);color:#fff;border-radius:12px;
+  padding:13px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px;
+  font-family:var(--font-body);transition:background .15s;
+}
+.presensi-save-btn:hover{background:#3a4669;}
+
+/* Siswa manager rows in modal */
+.siswa-mgr-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 12px;border:1px solid var(--border);border-radius:9px;margin-bottom:7px;font-size:13px;
+}
+.siswa-mgr-row button{
+  border:none;background:none;color:#e53e3e;cursor:pointer;font-size:12px;padding:4px 8px;
 }
 
 /* Panel */
@@ -380,24 +476,65 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
 .kelas-grid{display:none;}
 .kelas-grid.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
 
-/* Kalender embed */
+/* Tugas & Deadline */
 .kalender-wrap{background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
-.kalender-wrap h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.kalender-embed{width:100%;border:none;border-radius:12px;min-height:500px;}
-.kalender-open-btn{
-  display:inline-flex;align-items:center;gap:7px;margin-top:12px;
-  background:var(--navy);color:var(--white);border:none;border-radius:10px;
-  padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;
-  font-family:var(--font-body);transition:background .18s;text-decoration:none;
+
+.kal-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.kal-add-btn{
+  display:flex;align-items:center;gap:5px;border:none;background:var(--coral);color:#fff;
+  border-radius:9px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--font-body);
 }
-.kalender-open-btn:hover{background:var(--coral);}
+.kal-add-btn:hover{background:#e8654f;}
+
+.tugas-filter{display:flex;gap:6px;flex-wrap:wrap;}
+.tugas-filter-btn{
+  border:1px solid var(--border);background:#fff;color:var(--navy-soft);
+  border-radius:8px;padding:6px 13px;font-size:12px;cursor:pointer;font-family:var(--font-body);transition:all .15s;
+}
+.tugas-filter-btn:hover{background:#f5f5f5;}
+.tugas-filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+.tugas-item{
+  display:flex;align-items:flex-start;gap:12px;padding:13px 14px;border:1px solid var(--border);
+  border-radius:12px;margin-bottom:10px;transition:background .15s;
+}
+.tugas-item.clickable{cursor:pointer;}
+.tugas-item.clickable:hover{background:#fafafa;}
+.tugas-kelas-badge{
+  background:rgba(127,119,221,0.12);color:#534AB7;border-radius:8px;padding:4px 10px;
+  font-size:11px;font-weight:700;white-space:nowrap;flex-shrink:0;
+}
+.tugas-info{flex:1;min-width:0;}
+.tugas-title{font-size:14px;font-weight:600;color:var(--navy);}
+.tugas-desc{font-size:12px;color:var(--navy-muted);margin-top:3px;}
+.tugas-deadline{display:flex;align-items:center;gap:5px;margin-top:7px;font-size:11.5px;font-weight:600;}
+.tugas-deadline.upcoming{color:#1D9E75;}
+.tugas-deadline.soon{color:#e0ad2f;}
+.tugas-deadline.overdue{color:#e53e3e;}
+.tugas-status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.tugas-status-dot.upcoming{background:#1D9E75;}
+.tugas-status-dot.soon{background:#e0ad2f;}
+.tugas-status-dot.overdue{background:#e53e3e;}
+
+.event-form{display:flex;flex-direction:column;gap:5px;}
+.event-form label{font-size:11.5px;font-weight:600;color:var(--navy-soft);margin-top:8px;}
+.event-form input,.event-form textarea,.event-form select{
+  border:1px solid var(--border);border-radius:9px;padding:9px 12px;font-size:13px;font-family:var(--font-body);resize:vertical;
+}
+.event-form-acts{display:flex;gap:8px;margin-top:16px;}
 
 /* ===== RESPONSIVE / MOBILE ===== */
 @media(max-width:768px){
   /* Topbar */
-  .topbar{padding:10px 14px;}
+  .topbar{padding:10px 14px;flex-wrap:nowrap;}
+  .topbar-brand{min-width:0;flex-shrink:1;overflow:hidden;}
+  .brand-text{font-size:0.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .brand-sub{display:none;}
   .user-name,.user-role-label{display:none;}
-  .topbar-right{gap:8px;}
+  .topbar-right{gap:6px;flex-shrink:0;}
+  .user-chip{padding:0;background:none;}
+  .btn-topbar{padding:7px 11px;font-size:11px;white-space:nowrap;}
+  .btn-topbar .btn-text{display:none;}
 
   /* Hero */
   .hero-strip{padding:24px 16px;}
@@ -406,6 +543,23 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
 
   /* Main layout */
   .main,.status-wrap{padding-left:14px;padding-right:14px;}
+
+  /* Kelas tabs: 3 kolom sejajar rata */
+  .kelas-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .kelas-tab{justify-content:center;text-align:center;padding:10px 6px;font-size:12.5px;}
+
+  /* Tugas mobile */
+  .kal-toolbar{flex-direction:column;align-items:stretch;}
+  .tugas-filter{justify-content:center;}
+  .kal-add-btn{justify-content:center;}
+  .tugas-item{flex-wrap:wrap;}
+
+  /* Presensi mobile */
+  .presensi-kelas-grid{grid-template-columns:repeat(3,1fr);gap:8px;}
+  .presensi-kelas-card{padding:14px 8px;}
+  .presensi-toolbar{flex-direction:column;align-items:stretch;}
+  .siswa-presensi-row{flex-wrap:wrap;}
+  .status-btn{width:30px;height:28px;font-size:11px;}
 
   /* Menu grid: 2 kolom di tablet, mobile */
   .menu-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
@@ -449,6 +603,66 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
   .btn-label{display:none;} /* tombol Buka hanya tampil icon di layar sangat kecil */
   .btn-act{padding:5px 8px;}
 }
+/* ===== FLOATING NOTE ===== */
+.fnote-btn{
+  display:none;position:fixed;bottom:22px;right:22px;z-index:150;
+  width:54px;height:54px;border-radius:50%;
+  background:var(--coral);color:#fff;
+  align-items:center;justify-content:center;
+  box-shadow:0 6px 18px -4px rgba(255,140,122,0.55);
+  cursor:pointer;transition:transform .18s, box-shadow .18s;
+}
+.fnote-btn:hover{transform:scale(1.07);box-shadow:0 8px 22px -4px rgba(255,140,122,0.65);}
+.fnote-badge{
+  position:absolute;top:-2px;right:-2px;
+  width:16px;height:16px;border-radius:50%;
+  background:#e53e3e;color:#fff;font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--cream);
+}
+
+.fnote-panel{
+  position:fixed;bottom:88px;right:22px;z-index:151;
+  width:320px;max-width:calc(100vw - 32px);
+  background:var(--white);border-radius:18px;box-shadow:var(--shadow-lg);
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(12px) scale(0.96);opacity:0;pointer-events:none;
+  transition:all .2s ease;
+}
+.fnote-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto;}
+
+.fnote-head{
+  background:var(--navy);color:#fff;padding:13px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:13px;font-weight:600;
+}
+.fnote-head button{
+  background:none;border:none;color:#fff;opacity:0.7;cursor:pointer;font-size:14px;
+}
+.fnote-head button:hover{opacity:1;}
+
+.fnote-body{padding:14px;}
+.fnote-body textarea{
+  width:100%;min-height:140px;border:1px solid var(--border);border-radius:10px;
+  padding:10px 12px;font-size:13px;font-family:var(--font-body);resize:vertical;color:var(--navy);
+}
+
+.fnote-foot{
+  padding:10px 14px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.fnote-status{font-size:10.5px;color:var(--navy-muted);}
+.fnote-save-btn{
+  border:none;background:var(--coral);color:#fff;border-radius:9px;
+  padding:8px 16px;font-size:12.5px;font-weight:600;cursor:pointer;
+  font-family:var(--font-body);transition:background .15s;
+}
+.fnote-save-btn:hover{background:#e8654f;}
+
+@media(max-width:768px){
+  .fnote-btn{bottom:16px;right:16px;width:48px;height:48px;}
+  .fnote-panel{bottom:74px;right:14px;width:calc(100vw - 28px);}
+}
+
 </style>
 </head>
 <body>
@@ -521,6 +735,9 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
   <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="15 18 9 12 15 6"/>
   </symbol>
+  <symbol id="ic-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 9 12 15 18 9"/>
+  </symbol>
   <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
     <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
   </symbol>
@@ -551,6 +768,12 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
   </symbol>
   <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+  </symbol>
+  <symbol id="ic-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="ic-note-fl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/>
   </symbol>
   <symbol id="ic-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
@@ -657,23 +880,13 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
         </div>
       </div>
       <button class="btn-topbar" onclick="doLogout()">
-        <svg width="14" height="14" style="color:currentColor"><use href="#ic-logout"/></svg> Keluar
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-logout"/></svg> <span class="btn-text">Keluar</span>
       </button>
       <a href="index.html" class="btn-topbar home">
-        <svg width="14" height="14" style="color:currentColor"><use href="#ic-home"/></svg> Home
+        <svg width="14" height="14" style="color:currentColor"><use href="#ic-home"/></svg> <span class="btn-text">Home</span>
       </a>
     </div>
   </div>
-
-  <div class="hero-strip">
-    <div class="hero-inner">
-      <div class="role-pill" id="heroPill"></div>
-      <h1>Materi Belajar <span>Lengkap & Terorganisir</span></h1>
-      <p>Akses semua bahan ajar, modul, soal latihan, dan materi persiapan bahasa di satu tempat.</p>
-    </div>
-  </div>
-
-
 
   <!-- MENU UTAMA -->
   <div class="main" id="mainView">
@@ -788,34 +1001,54 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
       </div></div>
     </div>
 
-    <!-- KALENDER AKADEMIK -->
-    <div class="sec-head" style="margin-top:28px"><div class="sec-bar"></div><div class="sec-title">Kalender Akademik</div></div>
+    <!-- TUGAS & DEADLINE -->
+    <div class="sec-head" style="margin-top:28px"><div class="sec-bar"></div><div class="sec-title">Tugas & Deadline</div></div>
     <div class="kalender-wrap">
-      <h3>
-        <svg width="18" height="18" style="color:var(--coral)"><use href="#ic-calendar"/></svg>
-        Jadwal Tahun Ajaran 2025/2026
-      </h3>
-      <!--
-        CARA EMBED GOOGLE CALENDAR:
-        1. Buka calendar.google.com
-        2. Klik titik tiga di samping kalender → Settings and sharing
-        3. Scroll ke "Integrate calendar" → salin kode embed (src="...")
-        4. Ganti nilai src pada iframe di bawah dengan URL kalender Anda
-      -->
-      <iframe
-        class="kalender-embed"
-        src="https://calendar.google.com/calendar/embed?src=GANTI_DENGAN_CALENDAR_ID%40group.calendar.google.com&ctz=Asia%2FJakarta&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&hl=id"
-        frameborder="0"
-        scrolling="no"
-        title="Kalender Akademik"
-      ></iframe>
-      <a class="kalender-open-btn" href="https://calendar.google.com" target="_blank">
-        <svg width="14" height="14" style="color:currentColor"><use href="#ic-external"/></svg>
-        Buka di Google Calendar
-      </a>
+      <div class="kal-toolbar">
+        <div class="tugas-filter" id="tugasFilter">
+          <button class="tugas-filter-btn active" data-f="semua" onclick="filterTugas('semua')">Semua</button>
+          <button class="tugas-filter-btn" data-f="7" onclick="filterTugas('7')">Kelas 7</button>
+          <button class="tugas-filter-btn" data-f="8" onclick="filterTugas('8')">Kelas 8</button>
+          <button class="tugas-filter-btn" data-f="9" onclick="filterTugas('9')">Kelas 9</button>
+        </div>
+        <button class="kal-add-btn" id="tugasAddBtn" onclick="openTugasForm()" style="display:none">
+          <svg width="14" height="14" style="color:currentColor"><use href="#ic-plus"/></svg> Tambah Tugas
+        </button>
+      </div>
+
+      <div id="tugasList"></div>
     </div>
 
-    <!-- Dokumen Pribadi (admin only) -->
+    <!-- MODAL: Tambah/Edit Tugas -->
+    <div class="modal-bg" id="tugasModal">
+      <div class="modal" style="max-width:420px;padding:20px;">
+        <div class="modal-head">
+          <span class="modal-title" id="tugasModalTitle">Tambah Tugas</span>
+          <button class="btn-act" onclick="closeTugasForm()">✕ Tutup</button>
+        </div>
+        <div class="event-form">
+          <label>Kelas</label>
+          <select id="tgKelas">
+            <option value="7">Kelas 7</option>
+            <option value="8">Kelas 8</option>
+            <option value="9">Kelas 9</option>
+          </select>
+          <label>Judul Tugas</label>
+          <input type="text" id="tgJudul" placeholder="Contoh: Latihan Soal Bab 3">
+          <label>Deskripsi (opsional)</label>
+          <textarea id="tgDesk" rows="3" placeholder="Instruksi atau catatan tambahan..."></textarea>
+          <label>Tanggal Deadline</label>
+          <input type="date" id="tgDeadline">
+          <input type="hidden" id="tgId">
+          <div class="event-form-acts">
+            <button class="presensi-btn" id="tgDeleteBtn" onclick="deleteTugas()" style="display:none;color:#e53e3e;border-color:#fcc;">🗑️ Hapus</button>
+            <button class="presensi-save-btn" style="margin:0;flex:1;" onclick="saveTugas()">💾 Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dokumen Pribadi & Presensi (admin only) -->
     <div class="sec-head" id="dokSecHead" style="margin-top:28px;display:none"><div class="sec-bar"></div><div class="sec-title">Lainnya</div></div>
     <div class="kelas-grid active" id="dokGrid" style="display:none">
       <div class="card-wrap" style="position:relative">
@@ -827,9 +1060,73 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
           <div class="card-name">Dokumen Pribadi</div><div class="card-desc">Arsip & data pribadi</div>
         </div>
       </div>
+      <div class="card-wrap" style="position:relative">
+        <div class="admin-badge">
+          <svg width="10" height="10" style="color:currentColor"><use href="#ic-lock"/></svg> Admin
+        </div>
+        <div class="card" style="--ct:#E07A5F;--ci:rgba(224,122,95,0.1)" onclick="openPresensi()">
+          <div class="card-icon-wrap"><svg width="22" height="22" style="color:#E07A5F"><use href="#ic-target"/></svg></div>
+          <div class="card-name">Presensi</div><div class="card-desc">Rekap kehadiran siswa</div>
+        </div>
+      </div>
     </div>
 
   </div>
+
+  <!-- PRESENSI VIEW (admin only) -->
+  <div class="main" id="presensiView" style="display:none">
+    <div class="panel">
+      <div class="panel-hd">
+        <button class="btn-back" id="presensiBackBtn" onclick="presensiGoBack()">
+          <svg width="15" height="15" style="color:currentColor"><use href="#ic-back"/></svg> Kembali
+        </button>
+      </div>
+      <div class="panel-header">
+        <h2 id="presensiTitle">Presensi</h2>
+      </div>
+
+      <!-- LEVEL 1: Daftar Tahun Ajaran -->
+      <div id="presensiTahunList"></div>
+
+      <!-- LEVEL 2: Daftar Kelas dalam 1 Semester -->
+      <div id="presensiKelasList" style="display:none"></div>
+
+      <!-- LEVEL 3: Kelola siswa + pilih tanggal + form presensi -->
+      <div id="presensiFormView" style="display:none">
+        <div class="presensi-toolbar">
+          <div class="presensi-date-wrap">
+            <label>📅 Tanggal</label>
+            <input type="date" id="presensiTanggal" onchange="loadPresensiForDate()">
+          </div>
+          <button class="presensi-btn" onclick="openSiswaManager()">
+            <svg width="13" height="13" style="color:currentColor"><use href="#ic-settings"/></svg> Kelola Siswa
+          </button>
+        </div>
+        <div id="presensiSiswaForm"></div>
+        <button class="presensi-save-btn" id="btnSimpanPresensi" onclick="simpanPresensi()">💾 Simpan Presensi</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: Kelola Siswa -->
+  <div class="modal-bg" id="siswaManagerModal">
+    <div class="modal" style="max-width:480px;padding:20px;">
+      <div class="modal-head">
+        <span class="modal-title">Kelola Daftar Siswa</span>
+        <button class="btn-act" onclick="closeSiswaManager()">✕ Tutup</button>
+      </div>
+      <div style="max-height:55vh;overflow-y:auto;">
+        <div id="siswaManagerList"></div>
+      </div>
+      <div class="presensi-add-row" style="margin-top:14px;">
+        <input type="text" id="newSiswaInput" placeholder="Nama siswa baru..." onkeydown="if(event.key==='Enter')addSiswaBaru()">
+        <button onclick="addSiswaBaru()">+ Tambah</button>
+      </div>
+    </div>
+  </div>
+
+
 
   <!-- PANEL VIEW -->
   <div class="main" id="panelView">
@@ -917,6 +1214,25 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
     </div>
   </div>
 
+  <!-- FLOATING NOTE -->
+  <div class="fnote-btn" id="fnoteBtn" onclick="toggleFNote()">
+    <svg width="22" height="22" style="color:currentColor"><use href="#ic-note-fl"/></svg>
+    <span class="fnote-badge" id="fnoteBadge" style="display:none">!</span>
+  </div>
+
+  <div class="fnote-panel" id="fnotePanel">
+    <div class="fnote-head">
+      <span>📝 Catatan Pertemuan Berikutnya</span>
+      <button onclick="toggleFNote()">✕</button>
+    </div>
+    <div class="fnote-body">
+      <textarea id="fnoteText" placeholder="Tulis hal penting untuk diingat di pertemuan selanjutnya..."></textarea>
+    </div>
+    <div class="fnote-foot">
+      <span class="fnote-status" id="fnoteStatus">Tersimpan otomatis</span>
+      <button class="fnote-save-btn" onclick="saveFNote()">💾 Simpan</button>
+    </div>
+  </div>
 
 </div>
 
@@ -924,22 +1240,6 @@ body{font-family:var(--font-body);color:var(--navy);background:var(--cream);min-
 // ─────────────────────────────
 // AKUN — ubah sesuai kebutuhan
 // ─────────────────────────────
-const ACCOUNTS = {
-  admin: [
-    { username:'admin', password:'nuri2026',  name:'Mrs. Nuri Frasna Vitara' },
-    { username:'nurifrasna_',  password:'nuri13tommy06',  name:'Mrs. Nuri Frasna Vitara' }
-  ],
-  siswa: [
-    { username:'siswa', password:'belajar123', name:'Siswa' },
-    { username:'murid', password:'sekolah123', name:'Murid' }
-    // Tambah siswa: { username:'nama', password:'pass', name:'Nama Lengkap' }
-  ]
-};
-
-// ─────────────────────────────────────────────────────────
-// KONFIGURASI GOOGLE APPS SCRIPT
-// Ganti URL di bawah dengan URL deployment GAS Anda
-// ─────────────────────────────────────────────────────────
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbw82Fi6PZwAayTAuYyYvln3-oi7qZZkdxe3-VGCfpYDANC3maSXw2PEz0vYYyf6WQth/exec';
 // Contoh:
 // const GAS_URL = 'https://script.google.com/macros/s/AKfycb.../exec';
@@ -1012,18 +1312,36 @@ function doLogin() {
   btn.disabled = true;
   btn.innerHTML = '<svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg> Memeriksa...';
 
-  setTimeout(() => {
-    const found = (ACCOUNTS[role]||[]).find(a => a.username===u && a.password===p);
-    if (found) {
-      session = {role, name:found.name, username:u};
+  const gasUrl = getGasUrl();
+  if (!gasUrl) {
+    showErr('GAS URL belum dikonfigurasi.');
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg> Masuk';
+    return;
+  }
+
+  fetch(gasUrl, {
+    method: 'POST',
+    redirect: 'follow',
+    body: JSON.stringify({ action:'login', username:u, password:p, role })
+  })
+  .then(r => r.json())
+  .then(json => {
+    if (json.success) {
+      session = { role: json.role, name: json.name, username: json.username };
       try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch(e){}
       enterApp();
     } else {
-      showErr('Username atau password salah. Coba lagi.');
+      showErr(json.error || 'Username atau password salah.');
       btn.disabled = false;
       btn.innerHTML = '<svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg> Masuk';
     }
-  }, 500);
+  })
+  .catch(() => {
+    showErr('Gagal terhubung ke server. Periksa koneksi internet.');
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" style="color:currentColor"><use href="#ic-lock"/></svg> Masuk';
+  });
 }
 
 function doLogout() {
@@ -1051,17 +1369,15 @@ function enterApp() {
   document.getElementById('userNameTxt').textContent = session.name;
   document.getElementById('userRoleTxt').textContent = isAdmin ? 'Admin' : 'Siswa';
 
-  const pill = document.getElementById('heroPill');
-  pill.className = 'role-pill ' + (isAdmin ? 'rp-admin' : 'rp-siswa');
-  pill.innerHTML = isAdmin
-    ? '<svg width="12" height="12" style="color:currentColor"><use href="#ic-admin"/></svg> Masuk sebagai Admin'
-    : '<svg width="12" height="12" style="color:currentColor"><use href="#ic-student"/></svg> Masuk sebagai Siswa';
-
   document.getElementById('dokumenBadge')?.closest('.card-wrap') && (document.getElementById('dokumenBadge').closest('.card-wrap').style.display = isAdmin ? 'block' : 'none');
   document.getElementById('dokGrid').style.display    = isAdmin ? 'grid' : 'none';
   document.getElementById('dokSecHead').style.display = isAdmin ? 'flex' : 'none';
+  document.getElementById('tugasAddBtn').style.display = isAdmin ? 'flex' : 'none';
+  document.getElementById('fnoteBtn').style.display    = isAdmin ? 'flex' : 'none';
 
   loadStore();
+  initTugas();
+  if (isAdmin) initFNote();
 }
 
 // ── SESSION RESTORE ──
@@ -1141,6 +1457,539 @@ function openPanel(key) {
 function closePanel() {
   document.getElementById('mainView').style.display  = 'block';
   document.getElementById('panelView').style.display = 'none';
+}
+
+// ── FLOATING NOTE ──
+let fnoteSaveTimer = null;
+let fnoteLoaded = false;
+
+async function initFNote() {
+  const gasUrl = getGasUrl();
+  if (!gasUrl) return;
+  try {
+    const resp = await fetch(gasUrl + '?action=fnoteGet', { redirect:'follow' });
+    const json = await resp.json();
+    const text = json.success ? (json.text || '') : '';
+    document.getElementById('fnoteText').value = text;
+    document.getElementById('fnoteBadge').style.display = text.trim() ? 'flex' : 'none';
+  } catch(err) {
+    console.error('Gagal memuat floating note:', err);
+  }
+  fnoteLoaded = true;
+
+  // Auto-save saat mengetik (debounce 1 detik)
+  document.getElementById('fnoteText').addEventListener('input', () => {
+    document.getElementById('fnoteStatus').textContent = 'Mengetik...';
+    clearTimeout(fnoteSaveTimer);
+    fnoteSaveTimer = setTimeout(saveFNote, 1000);
+  });
+}
+
+function toggleFNote() {
+  document.getElementById('fnotePanel').classList.toggle('open');
+}
+
+async function saveFNote() {
+  if (!fnoteLoaded) return;
+  const text = document.getElementById('fnoteText').value;
+  const statusEl = document.getElementById('fnoteStatus');
+  statusEl.textContent = 'Menyimpan...';
+
+  const gasUrl = getGasUrl();
+  try {
+    const resp = await fetch(gasUrl, {
+      method:'POST', redirect:'follow',
+      body: JSON.stringify({ action:'fnoteSave', text })
+    });
+    const json = await resp.json();
+    if (json.success) {
+      statusEl.textContent = 'Tersimpan otomatis';
+      document.getElementById('fnoteBadge').style.display = text.trim() ? 'flex' : 'none';
+    } else {
+      statusEl.textContent = 'Gagal menyimpan';
+    }
+  } catch(err) {
+    statusEl.textContent = 'Gagal terhubung ke server';
+  }
+}
+
+// ── TUGAS & DEADLINE ──
+let tugasData   = []; // [{id, kelas, judul, deskripsi, deadline}]
+let tugasFilter = 'semua';
+
+function initTugas() {
+  fetchTugas();
+}
+
+async function fetchTugas() {
+  const gasUrl = getGasUrl();
+  document.getElementById('tugasList').innerHTML = '<div class="empty"><p>🔄 Memuat daftar tugas...</p></div>';
+  if (!gasUrl) { tugasData = []; renderTugas(); return; }
+  try {
+    const resp = await fetch(gasUrl + '?action=tugasList', { redirect:'follow' });
+    const json = await resp.json();
+    tugasData = json.success ? json.tugas : [];
+  } catch(err) {
+    console.error('Fetch tugas error:', err);
+    tugasData = [];
+  }
+  renderTugas();
+}
+
+function filterTugas(f) {
+  tugasFilter = f;
+  document.querySelectorAll('.tugas-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.f === f));
+  renderTugas();
+}
+
+function tugasStatus(deadline) {
+  const today = new Date().toISOString().slice(0,10);
+  const diffDays = (new Date(deadline) - new Date(today)) / 86400000;
+  if (diffDays < 0) return 'overdue';
+  if (diffDays <= 3) return 'soon';
+  return 'upcoming';
+}
+
+function tugasStatusLabel(status, deadline) {
+  const tgl = formatTglIndo(deadline);
+  if (status === 'overdue')  return `⏰ Lewat deadline (${tgl})`;
+  if (status === 'soon')     return `🔥 Segera! Deadline ${tgl}`;
+  return `📅 Deadline ${tgl}`;
+}
+
+function renderTugas() {
+  const listEl = document.getElementById('tugasList');
+  let data = tugasFilter === 'semua' ? tugasData : tugasData.filter(t => t.kelas === tugasFilter);
+  data = [...data].sort((a,b) => a.deadline.localeCompare(b.deadline));
+
+  if (!data.length) {
+    listEl.innerHTML = '<div class="empty"><p>📭 Belum ada tugas.</p></div>';
+    return;
+  }
+
+  const isAdmin = session.role === 'admin';
+  listEl.innerHTML = data.map(t => {
+    const status = tugasStatus(t.deadline);
+    return `
+      <div class="tugas-item ${isAdmin?'clickable':''}" ${isAdmin?`onclick='openTugasForm(${JSON.stringify(t)})'`:''}>
+        <div class="tugas-status-dot ${status}"></div>
+        <div class="tugas-info">
+          <div class="tugas-title">${t.judul} <span class="tugas-kelas-badge">Kelas ${t.kelas}</span></div>
+          ${t.deskripsi ? `<div class="tugas-desc">${t.deskripsi}</div>` : ''}
+          <div class="tugas-deadline ${status}">${tugasStatusLabel(status, t.deadline)}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function formatTglIndo(dateStr) {
+  const [y,m,d] = dateStr.split('-');
+  const bulanSingkat = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  return `${parseInt(d)} ${bulanSingkat[parseInt(m)-1]} ${y}`;
+}
+
+function openTugasForm(t) {
+  if (session.role !== 'admin') return;
+  document.getElementById('tugasModalTitle').textContent = t ? 'Edit Tugas' : 'Tambah Tugas';
+  document.getElementById('tgId').value       = t ? t.id : '';
+  document.getElementById('tgKelas').value    = t ? t.kelas : '7';
+  document.getElementById('tgJudul').value    = t ? t.judul : '';
+  document.getElementById('tgDesk').value     = t ? (t.deskripsi||'') : '';
+  document.getElementById('tgDeadline').value = t ? t.deadline : '';
+  document.getElementById('tgDeleteBtn').style.display = t ? 'inline-flex' : 'none';
+  document.getElementById('tugasModal').classList.add('open');
+}
+function closeTugasForm() {
+  document.getElementById('tugasModal').classList.remove('open');
+}
+
+async function saveTugas() {
+  const id        = document.getElementById('tgId').value;
+  const kelas     = document.getElementById('tgKelas').value;
+  const judul     = document.getElementById('tgJudul').value.trim();
+  const deskripsi = document.getElementById('tgDesk').value.trim();
+  const deadline  = document.getElementById('tgDeadline').value;
+
+  if (!judul || !deadline) { alert('Judul dan tanggal deadline wajib diisi.'); return; }
+
+  const gasUrl = getGasUrl();
+  try {
+    const resp = await fetch(gasUrl, {
+      method:'POST', redirect:'follow',
+      body: JSON.stringify({ action:'tugasSave', id, kelas, judul, deskripsi, deadline })
+    });
+    const json = await resp.json();
+    if (json.success) {
+      closeTugasForm();
+      fetchTugas();
+    } else {
+      alert(json.error || 'Gagal menyimpan tugas.');
+    }
+  } catch(err) {
+    alert('Gagal terhubung ke server.');
+  }
+}
+
+async function deleteTugas() {
+  const id = document.getElementById('tgId').value;
+  if (!id) return;
+  if (!confirm('Hapus tugas ini?')) return;
+
+  const gasUrl = getGasUrl();
+  try {
+    const resp = await fetch(gasUrl, {
+      method:'POST', redirect:'follow',
+      body: JSON.stringify({ action:'tugasDelete', id })
+    });
+    const json = await resp.json();
+    if (json.success) {
+      closeTugasForm();
+      fetchTugas();
+    } else {
+      alert(json.error || 'Gagal menghapus tugas.');
+    }
+  } catch(err) {
+    alert('Gagal terhubung ke server.');
+  }
+}
+
+
+// State
+let presensiData   = [];   // [{tahun, sheetGanjil, sheetGenap}]
+let presensiCtx     = { tahun:'', semester:'', kelas:'', sheetUrl:'' };
+let presensiSiswaList = []; // daftar nama siswa kelas aktif
+
+function openPresensi() {
+  if (session.role !== 'admin') { alert('Menu ini hanya bisa diakses oleh Admin.'); return; }
+  document.getElementById('mainView').style.display     = 'none';
+  document.getElementById('presensiView').style.display = 'block';
+  presensiShowLevel(1);
+  fetchPresensiData();
+}
+function closePresensi() {
+  document.getElementById('mainView').style.display     = 'block';
+  document.getElementById('presensiView').style.display = 'none';
+}
+
+function presensiShowLevel(lvl) {
+  document.getElementById('presensiTahunList').style.display = lvl===1 ? 'block' : 'none';
+  document.getElementById('presensiKelasList').style.display = lvl===2 ? 'block' : 'none';
+  document.getElementById('presensiFormView').style.display  = lvl===3 ? 'block' : 'none';
+  const titleEl = document.getElementById('presensiTitle');
+  if (lvl===1) titleEl.textContent = 'Presensi';
+  if (lvl===2) titleEl.textContent = `Presensi ${presensiCtx.tahun} — Semester ${presensiCtx.semester}`;
+  if (lvl===3) titleEl.textContent = `Presensi Kelas ${presensiCtx.kelas} — ${presensiCtx.tahun} (${presensiCtx.semester})`;
+}
+
+function presensiGoBack() {
+  const lvl3 = document.getElementById('presensiFormView').style.display === 'block';
+  const lvl2 = document.getElementById('presensiKelasList').style.display === 'block';
+  if (lvl3) { presensiShowLevel(2); return; }
+  if (lvl2) { presensiShowLevel(1); return; }
+  closePresensi();
+}
+
+// ── LEVEL 1: Tahun Ajaran ──
+async function fetchPresensiData() {
+  const list = document.getElementById('presensiTahunList');
+  list.innerHTML = '<div class="empty"><p>🔄 Memuat data presensi...</p></div>';
+  const gasUrl = getGasUrl();
+  if (!gasUrl) { list.innerHTML = '<div class="empty"><p>GAS URL belum dikonfigurasi.</p></div>'; return; }
+  try {
+    const resp = await fetch(gasUrl + '?action=presensiList', { redirect:'follow' });
+    const json = await resp.json();
+    presensiData = json.success ? json.data : [];
+  } catch(err) {
+    console.error('Fetch presensi error:', err);
+    presensiData = [];
+  }
+  renderPresensiTahun();
+}
+
+function renderPresensiTahun() {
+  const list = document.getElementById('presensiTahunList');
+  if (!presensiData.length) {
+    list.innerHTML = '<div class="empty"><p>📋 Belum ada Tahun Ajaran. Tambahkan di bawah.</p></div>';
+  } else {
+    list.innerHTML = presensiData.map((ta, i) => `
+      <div class="presensi-year-card" id="ta-card-${i}">
+        <div class="presensi-year-head" onclick="toggleTahun(${i})">
+          <span>📅 Presensi Tahun Ajaran ${ta.tahun}</span>
+          <svg class="chev" width="14" height="14" style="color:currentColor"><use href="#ic-chevron-down"/></svg>
+        </div>
+        <div class="presensi-sem-list">
+          ${['Ganjil','Genap'].map(sem => {
+            const key = sem==='Ganjil' ? 'sheetGanjil' : 'sheetGenap';
+            const url = ta[key];
+            return `<div class="presensi-sem-item">
+              <span class="sem-label">📘 Semester ${sem}</span>
+              <div class="presensi-sem-actions">
+                ${url
+                  ? `<button class="presensi-btn edit" onclick="openSemester('${ta.tahun}','${sem}','${url}')">📝 Isi Presensi</button>
+                     <a class="presensi-btn export" href="${url.replace(/\/edit.*$/,'')}/export?format=xlsx" target="_blank">⬇️ Excel</a>`
+                  : `<button class="presensi-btn" onclick="createPresensiSheet(${i},'${key}','${ta.tahun}','${sem}')">+ Buat Sheet</button>`}
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  list.innerHTML += `
+    <div class="presensi-add-row">
+      <input type="text" id="newTahunInput" placeholder="Contoh: 2026-2027">
+      <button onclick="addTahunAjaran()">+ Tambah Tahun Ajaran</button>
+    </div>`;
+}
+
+function toggleTahun(i) {
+  document.getElementById('ta-card-'+i).classList.toggle('open');
+}
+
+async function addTahunAjaran() {
+  const input = document.getElementById('newTahunInput');
+  const tahun = input.value.trim();
+  if (!tahun) { alert('Isi tahun ajaran, contoh: 2026-2027'); return; }
+  if (presensiData.some(t => t.tahun === tahun)) { alert('Tahun ajaran ini sudah ada.'); return; }
+
+  const gasUrl = getGasUrl();
+  try {
+    const resp = await fetch(gasUrl, {
+      method:'POST', redirect:'follow',
+      body: JSON.stringify({ action:'presensiAddTahun', tahun })
+    });
+    const json = await resp.json();
+    if (json.success) {
+      presensiData.push({ tahun, sheetGanjil:'', sheetGenap:'' });
+      renderPresensiTahun();
+    } else {
+      alert(json.error || 'Gagal menambah tahun ajaran.');
+    }
+  } catch(err) {
+    alert('Gagal terhubung ke server.');
+  }
+}
+
+async function createPresensiSheet(i, key, tahun, semester) {
+  const gasUrl = getGasUrl();
+  const card = document.getElementById('ta-card-'+i);
+  card.querySelector('.presensi-year-head span').textContent = `📅 Presensi Tahun Ajaran ${tahun} (membuat sheet...)`;
+  try {
+    const resp = await fetch(gasUrl, {
+      method:'POST', redirect:'follow',
+      body: JSON.stringify({ action:'presensiCreateSheet', tahun, semester })
+    });
+    const json = await resp.json();
+    if (json.success) {
+      presensiData[i][key] = json.sheetUrl;
+      renderPresensiTahun();
+      document.getElementById('ta-card-'+i).classList.add('open');
+    } else {
+      alert(json.error || 'Gagal membuat sheet.');
+      renderPresensiTahun();
+    }
+  } catch(err) {
+    alert('Gagal terhubung ke server.');
+    renderPresensiTahun();
+  }
+}
+
+// ── LEVEL 2: Pilih Kelas ──
+function openSemester(tahun, semester, sheetUrl) {
+  presensiCtx = { tahun, semester, kelas:'', sheetUrl };
+  const list = document.getElementById('presensiKelasList');
+  list.innerHTML = `
+    <div class="presensi-kelas-grid">
+      ${['7','8','9'].map(k => `
+        <div class="presensi-kelas-card" onclick="openKelasPresensi('${k}')">
+          <div class="num">${k}</div>
+          <div class="lbl">Kelas ${k}</div>
+        </div>
+      `).join('')}
+    </div>`;
+  presensiShowLevel(2);
+}
+
+// ── LEVEL 3: Form presensi harian ──
+function openKelasPresensi(kelas) {
+  presensiCtx.kelas = kelas;
+  presensiShowLevel(3);
+  const dateInput = document.getElementById('presensiTanggal');
+  if (!dateInput.value) {
+    const today = new Date();
+    dateInput.value = today.toISOString().slice(0,10);
+  }
+  loadSiswaList();
+}
+
+function siswaStorageKey() {
+  return `presensi_siswa_${presensiCtx.tahun}_${presensiCtx.kelas}`;
+}
+
+function loadSiswaList() {
+  // Daftar siswa disimpan per Tahun Ajaran + Kelas (manual input admin), persist via GAS
+  const gasUrl = getGasUrl();
+  const formEl = document.getElementById('presensiSiswaForm');
+  formEl.innerHTML = '<div class="empty"><p>🔄 Memuat daftar siswa...</p></div>';
+  fetch(gasUrl + '?action=presensiSiswaList&tahun=' + encodeURIComponent(presensiCtx.tahun) + '&kelas=' + encodeURIComponent(presensiCtx.kelas), { redirect:'follow' })
+    .then(r => r.json())
+    .then(json => {
+      presensiSiswaList = json.success ? json.siswa : [];
+      loadPresensiForDate();
+    })
+    .catch(() => {
+      presensiSiswaList = [];
+      formEl.innerHTML = '<div class="empty"><p>Gagal memuat daftar siswa.</p></div>';
+    });
+}
+
+let presensiStatusMap = {}; // { namaSiswa: 'H'|'S'|'I'|'A' }
+
+async function loadPresensiForDate() {
+  const tanggal = document.getElementById('presensiTanggal').value;
+  if (!tanggal) return;
+  if (!presensiSiswaList.length) {
+    document.getElementById('presensiSiswaForm').innerHTML = `
+      <div class="empty"><p>📋 Belum ada siswa di Kelas ${presensiCtx.kelas}. Klik "Kelola Siswa" untuk menambahkan.</p></div>`;
+    return;
+  }
+
+  const formEl = document.getElementById('presensiSiswaForm');
+  formEl.innerHTML = '<div class="empty"><p>🔄 Memuat presensi tanggal ini...</p></div>';
+
+  const gasUrl = getGasUrl();
+  try {
+    const resp = await fetch(gasUrl + '?action=presensiGet'
+      + '&sheetUrl=' + encodeURIComponent(presensiCtx.sheetUrl)
+      + '&kelas=' + encodeURIComponent(presensiCtx.kelas)
+      + '&tanggal=' + encodeURIComponent(tanggal), { redirect:'follow' });
+    const json = await resp.json();
+    presensiStatusMap = json.success ? json.data : {};
+  } catch(err) {
+    presensiStatusMap = {};
+  }
+
+  renderSiswaForm();
+}
+
+function renderSiswaForm() {
+  const formEl = document.getElementById('presensiSiswaForm');
+  formEl.innerHTML = presensiSiswaList.map(nama => {
+    const status = presensiStatusMap[nama] || '';
+    return `
+      <div class="siswa-presensi-row" data-nama="${nama}">
+        <span class="siswa-name">${nama}</span>
+        <div class="status-btns">
+          ${['H','S','I','A'].map(s => `
+            <button class="status-btn ${s} ${status===s?'active':''}" onclick="setStatus(this,'${nama}','${s}')">${s}</button>
+          `).join('')}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function setStatus(btn, nama, status) {
+  presensiStatusMap[nama] = status;
+  const row = btn.closest('.siswa-presensi-row');
+  row.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+async function simpanPresensi() {
+  const tanggal = document.getElementById('presensiTanggal').value;
+  if (!tanggal) { alert('Pilih tanggal terlebih dahulu.'); return; }
+
+  const btn = document.getElementById('btnSimpanPresensi');
+  btn.disabled = true;
+  btn.textContent = '💾 Menyimpan...';
+
+  const records = presensiSiswaList.map(nama => ({ nama, status: presensiStatusMap[nama] || '' }));
+
+  const gasUrl = getGasUrl();
+  try {
+    const resp = await fetch(gasUrl, {
+      method:'POST', redirect:'follow',
+      body: JSON.stringify({
+        action:'presensiSave',
+        sheetUrl: presensiCtx.sheetUrl,
+        kelas:    presensiCtx.kelas,
+        tanggal:  tanggal,
+        records:  records
+      })
+    });
+    const json = await resp.json();
+    if (json.success) {
+      btn.textContent = '✅ Tersimpan!';
+      setTimeout(() => { btn.textContent = '💾 Simpan Presensi'; btn.disabled = false; }, 1500);
+    } else {
+      alert(json.error || 'Gagal menyimpan presensi.');
+      btn.textContent = '💾 Simpan Presensi'; btn.disabled = false;
+    }
+  } catch(err) {
+    alert('Gagal terhubung ke server.');
+    btn.textContent = '💾 Simpan Presensi'; btn.disabled = false;
+  }
+}
+
+// ── Kelola Siswa (modal) ──
+function openSiswaManager() {
+  document.getElementById('siswaManagerModal').classList.add('open');
+  renderSiswaManager();
+}
+function closeSiswaManager() {
+  document.getElementById('siswaManagerModal').classList.remove('open');
+  // Refresh form setelah kemungkinan ada perubahan
+  loadSiswaList();
+}
+function renderSiswaManager() {
+  const listEl = document.getElementById('siswaManagerList');
+  if (!presensiSiswaList.length) {
+    listEl.innerHTML = '<p style="font-size:13px;color:var(--navy-muted);">Belum ada siswa.</p>';
+    return;
+  }
+  listEl.innerHTML = presensiSiswaList.map((nama, i) => `
+    <div class="siswa-mgr-row">
+      <span>${nama}</span>
+      <button onclick="removeSiswa(${i})">🗑️ Hapus</button>
+    </div>
+  `).join('');
+}
+
+async function addSiswaBaru() {
+  const input = document.getElementById('newSiswaInput');
+  const nama = input.value.trim();
+  if (!nama) return;
+  if (presensiSiswaList.includes(nama)) { alert('Siswa ini sudah ada.'); return; }
+
+  presensiSiswaList.push(nama);
+  input.value = '';
+  renderSiswaManager();
+  await savePresensiSiswaList();
+}
+
+async function removeSiswa(i) {
+  if (!confirm('Hapus siswa "'+presensiSiswaList[i]+'" dari daftar?')) return;
+  presensiSiswaList.splice(i,1);
+  renderSiswaManager();
+  await savePresensiSiswaList();
+}
+
+async function savePresensiSiswaList() {
+  const gasUrl = getGasUrl();
+  try {
+    await fetch(gasUrl, {
+      method:'POST', redirect:'follow',
+      body: JSON.stringify({
+        action:'presensiSiswaSave',
+        tahun: presensiCtx.tahun,
+        kelas: presensiCtx.kelas,
+        siswa: presensiSiswaList
+      })
+    });
+  } catch(err) {
+    console.error('Gagal simpan daftar siswa:', err);
+  }
 }
 
 // ── SWITCH KELAS ──
