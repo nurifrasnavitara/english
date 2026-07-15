@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinta Al-Qur'an — Materi MPLS</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8EE;
+    --honey:#FFC94A;
+    --coral:#FF8C7A;
+    --coral-dark:#F0684F;
+    --mint:#A9DFC9;
+    --sky:#9FD8E8;
+    --navy:#27314F;
+    --navy-soft:#4A5578;
+    --navy-muted:#8892AB;
+    --gold:#E8A93C;
+    --white:#FFFFFF;
+    --border:#E8EAF0;
+    --bg-soft:#F7F8FB;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --shadow:0 18px 40px -18px rgba(39,49,79,0.22);
+    --font-display:'Fredoka',sans-serif;
+    --font-body:'Poppins',sans-serif;
+    --font-arabic:'Amiri',serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-snap-type:y proximity; }
+  body{
+    margin:0; background:var(--cream); color:var(--navy);
+    font-family:var(--font-body); -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{ font-family:var(--font-display); font-weight:600; line-height:1.14; margin:0; color:var(--navy); }
+  p{ line-height:1.7; color:var(--navy-soft); margin:0 0 12px; font-weight:400; }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 24px; width:100%; }
+  section{
+    min-height:100vh; scroll-snap-align:start;
+    display:flex; align-items:center; padding:70px 0;
+    position:relative; overflow:hidden;
+  }
+  .navy-bg{ background:var(--navy); color:var(--cream); }
+  .navy-bg p{ color:#C7CDE0; }
+  .navy-bg h1,.navy-bg h2,.navy-bg h3{ color:var(--white); }
+  .mint-bg{ background:var(--mint); }
+  .sky-bg{ background:var(--sky); }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:var(--font-body); font-weight:700; font-size:12px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--coral-dark); margin-bottom:14px;
+  }
+  .navy-bg .eyebrow{ color:var(--honey); }
+  .eyebrow::before{ content:""; width:18px; height:2px; background:currentColor; display:inline-block; border-radius:2px; }
+
+  .duration{
+    display:inline-flex; align-items:center; gap:6px; margin-left:10px;
+    font-size:11.5px; font-weight:600; color:var(--navy-muted); text-transform:none; letter-spacing:0;
+    background:var(--bg-soft); padding:4px 10px; border-radius:999px; border:1px solid var(--border);
+  }
+  .navy-bg .duration{ background:rgba(255,255,255,.08); color:#C7CDE0; border-color:rgba(255,255,255,.14); }
+
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform:none; }
+  .reveal.d1{ transition-delay:.08s; }
+  .reveal.d2{ transition-delay:.16s; }
+  .reveal.d3{ transition-delay:.24s; }
+
+  #shield-hud{ position:fixed; top:18px; right:18px; z-index:50; width:50px; height:56px; filter:drop-shadow(0 6px 14px rgba(39,49,79,.28)); }
+  #shield-hud svg{ width:100%; height:100%; display:block; }
+  #shield-fill{ clip-path: inset(100% 0 0 0); transition: clip-path .15s linear; }
+  #shield-pct{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:600; font-size:10.5px; color:var(--navy); padding-top:6px; }
+
+  .float-shape{ position:absolute; border-radius:50%; opacity:.55; animation:float 7s ease-in-out infinite; }
+  @keyframes float{ 0%,100%{ transform:translateY(0) rotate(0deg);} 50%{ transform:translateY(-18px) rotate(6deg);} }
+  .hero{ background:linear-gradient(160deg,#2E3A5C 0%, var(--navy) 65%); color:var(--cream); }
+  .hero .float-shape.s1{ width:120px; height:120px; background:var(--honey); top:8%; left:-40px; animation-delay:.2s; opacity:.18; }
+  .hero .float-shape.s2{ width:90px; height:90px; background:var(--coral); bottom:12%; right:6%; animation-delay:1s; opacity:.2; }
+  .hero .float-shape.s3{ width:60px; height:60px; background:var(--sky); top:22%; right:22%; animation-delay:1.6s; opacity:.22; }
+  .hero-badge{
+    display:inline-block; background:rgba(255,201,74,.15); border:1px solid rgba(255,201,74,.4);
+    color:var(--honey); font-weight:700; font-size:12px; letter-spacing:.08em;
+    padding:6px 14px; border-radius:999px; margin-bottom:22px; text-transform:uppercase;
+  }
+  .hero h1{ font-size:clamp(34px,7vw,54px); color:#fff; }
+  .hero h1 span{ color:var(--coral); }
+  .hero p.lead{ color:#C7CDE0; font-size:17px; margin-top:16px; max-width:52ch; }
+  .hero-shield-big{ position:absolute; right:-70px; top:-30px; width:300px; height:300px; opacity:.14; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px; margin-top:28px;
+    background:var(--coral); color:#fff; font-weight:600; font-family:var(--font-display);
+    padding:15px 28px; border-radius:999px; text-decoration:none; border:none; cursor:pointer;
+    font-size:16px; transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
+    box-shadow:0 12px 28px -10px rgba(255,140,122,.6);
+  }
+  .btn:hover{ background:var(--coral-dark); transform:translateY(-3px); }
+
+  .icon-badge{
+    width:56px; height:56px; border-radius:18px; display:flex; align-items:center; justify-content:center;
+    background:var(--white); box-shadow:var(--shadow); margin-bottom:18px;
+  }
+  .icon-badge svg{ width:28px; height:28px; }
+  .navy-bg .icon-badge{ background:rgba(255,255,255,.08); box-shadow:none; }
+
+  .card{ background:var(--white); border-radius:var(--radius-lg); padding:26px 24px; border:1px solid var(--border); box-shadow:var(--shadow); }
+  .grid{ display:grid; gap:16px; }
+  @media(min-width:600px){ .grid.cols-2{ grid-template-columns:1fr 1fr; } .grid.cols-3{ grid-template-columns:repeat(3,1fr); } }
+
+  blockquote{
+    margin:18px 0; padding:18px 22px; border-left:4px solid var(--coral);
+    background:#FFF1EC; border-radius:6px 16px 16px 6px; font-style:italic; color:var(--navy);
+  }
+  .navy-bg blockquote{ color:#F3EEE0; background:rgba(255,201,74,.09); border-left-color:var(--honey); }
+
+  .arabic-line{ font-family:var(--font-arabic); font-size:24px; line-height:2; direction:rtl; color:var(--navy); margin:10px 0; }
+  .navy-bg .arabic-line{ color:#fff; }
+
+  .reveal-box{ margin-top:18px; }
+  .reveal-btn{
+    background:var(--mint); color:#1D4A3A; border:none; font-family:var(--font-display);
+    font-weight:600; padding:12px 22px; border-radius:999px; cursor:pointer; font-size:14.5px;
+  }
+  .reveal-answer{ display:none; margin-top:14px; padding:16px 20px; background:var(--navy); color:#fff; border-radius:16px; font-weight:500; }
+  .reveal-answer.show{ display:block; animation:pop .3s ease; }
+  @keyframes pop{ from{ transform:scale(.95); opacity:0;} to{ transform:scale(1); opacity:1;} }
+
+  .acc-item{ border:1px solid var(--border); border-radius:18px; overflow:hidden; background:var(--white); margin-bottom:12px; }
+  .acc-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:17px 19px; cursor:pointer; font-family:var(--font-display); font-weight:600; font-size:16.5px; color:var(--navy); }
+  .acc-head .tag{ font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; font-family:var(--font-body); background:var(--sky); color:#144A5C; padding:4px 10px; border-radius:999px; font-weight:700; flex-shrink:0; }
+  .acc-head .plus{ font-size:22px; color:var(--coral); transition:transform .25s ease; flex-shrink:0; }
+  .acc-item.open .plus{ transform:rotate(45deg); }
+  .acc-body{ max-height:0; overflow:hidden; transition:max-height .3s ease; padding:0 19px; }
+  .acc-item.open .acc-body{ padding-bottom:19px; }
+  .acc-body p{ margin:0; font-size:14.5px; }
+
+  .role-card{ border-radius:20px; padding:24px; color:#fff; transition:transform .2s ease; }
+  .role-card:hover{ transform:translateY(-4px); }
+  .role-card h3{ font-size:19px; margin-bottom:8px; color:#fff; }
+  .role-card p{ color:rgba(255,255,255,.9); font-size:14.5px; margin:0; }
+  .role-1{ background:linear-gradient(135deg,#3A4A72,#27314F); }
+  .role-2{ background:linear-gradient(135deg,#F0684F,#FF8C7A); }
+  .role-3{ background:linear-gradient(135deg,#D89620,#E8A93C); }
+
+  .quiz-item{ background:var(--white); border:1px solid var(--border); border-radius:18px; padding:19px 21px; margin-bottom:14px; box-shadow:var(--shadow); }
+  .quiz-item p.q{ color:var(--navy); font-weight:600; margin-bottom:12px; font-size:15.5px; }
+  .quiz-btns{ display:flex; gap:10px; }
+  .qbtn{ flex:1; border:1.5px solid var(--border); background:var(--bg-soft); color:var(--navy); font-family:var(--font-display); font-weight:600; padding:11px; border-radius:13px; cursor:pointer; font-size:14.5px; }
+  .qbtn.correct{ background:#E2F5EB; border-color:#4CA778; color:#1E6B45; }
+  .qbtn.wrong{ background:#FDE7E1; border-color:var(--coral); color:var(--coral-dark); }
+  .qbtn:disabled{ cursor:default; opacity:.55; }
+  .qbtn:disabled.correct, .qbtn:disabled.wrong{ opacity:1; }
+  .qfeedback{ margin-top:10px; font-size:13.5px; color:var(--navy-soft); display:none; }
+  .qfeedback.show{ display:block; }
+  #quiz-score{ text-align:center; margin-top:20px; padding:19px; border-radius:18px; background:var(--navy); color:#fff; font-family:var(--font-display); font-weight:600; font-size:16px; opacity:0; transform:translateY(6px); transition:all .35s ease; }
+  #quiz-score.show{ opacity:1; transform:none; }
+
+  .tepuk-row{ display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px dashed rgba(255,255,255,.16); }
+  .tepuk-row:last-child{ border-bottom:none; }
+  .tepuk-side{ flex:1; text-align:center; padding:12px; border-radius:16px; font-family:var(--font-display); font-weight:600; font-size:17px; }
+  .tepuk-guru{ background:rgba(255,201,74,.14); color:var(--honey); }
+  .tepuk-siswa{ background:rgba(169,223,201,.14); color:var(--mint); }
+  .tepuk-arrow{ color:#8892AB; font-size:18px; }
+
+  .pahala-row{ display:flex; align-items:center; justify-content:space-between; padding:10px 16px; background:var(--bg-soft); border-radius:12px; margin-bottom:8px; font-weight:600; font-size:14px; color:var(--navy); }
+  .pahala-row span.num{ color:var(--coral-dark); font-family:var(--font-display); }
+  .pahala-total{ margin-top:12px; text-align:center; padding:14px; border-radius:14px; background:var(--honey); color:#4A3400; font-family:var(--font-display); font-weight:600; font-size:16px; }
+
+  .day-row{ display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px dashed var(--border); }
+  .day-row:last-child{ border-bottom:none; }
+  .day-num{ font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--navy); background:var(--honey); width:34px; height:34px; border-radius:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .day-row p{ margin:0; font-size:14.5px; }
+
+  footer{ background:var(--navy); color:#C7CDE0; padding:70px 0 44px; text-align:center; min-height:100vh; display:flex; align-items:center; scroll-snap-align:start; }
+  footer .inner{ width:100%; }
+  footer .arabic{ font-family:var(--font-arabic); font-size:26px; line-height:2.1; color:#fff; margin:20px 0; direction:rtl; }
+  footer small{ display:block; margin-top:30px; color:#6C7899; font-size:12px; }
+  .divider{ width:46px; height:4px; background:var(--coral); border-radius:4px; margin:0 auto 20px; }
+
+  .kicker-title{ font-size:clamp(25px,5vw,34px); }
+  @media(max-width:600px){ section{ padding:56px 0; } }
+
+  /* ===== Slide nav (one-click next/prev) ===== */
+  #slide-nav{
+    position:fixed; right:18px; bottom:22px; z-index:50;
+    display:flex; flex-direction:column; gap:10px; align-items:center;
+  }
+  .nav-btn{
+    width:50px; height:50px; border-radius:50%; border:none; cursor:pointer;
+    background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 24px -8px rgba(39,49,79,.5); transition:transform .18s ease, background .18s ease, opacity .18s ease;
+  }
+  .nav-btn:hover{ transform:translateY(-2px); background:var(--coral-dark); }
+  .nav-btn:disabled{ opacity:.35; cursor:default; transform:none; background:var(--navy); }
+  .nav-btn svg{ width:20px; height:20px; }
+  .nav-btn.next{ animation:nudge 2.2s ease-in-out infinite; }
+  @keyframes nudge{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(4px);} }
+  #slide-count{
+    font-family:var(--font-display); font-size:11px; font-weight:600; color:var(--navy);
+    background:var(--white); border:1px solid var(--border); padding:4px 9px; border-radius:999px;
+    box-shadow:var(--shadow);
+  }
+  @media(max-width:600px){ #slide-nav{ right:12px; bottom:16px; } .nav-btn{ width:44px; height:44px; } }
+
+  .author-tag{ margin-top:26px; display:flex; align-items:center; gap:10px; }
+  .author-tag .line{ width:24px; height:2px; background:var(--honey); }
+  .author-tag span{ font-size:12.5px; color:#C7CDE0; letter-spacing:.02em; }
+</style>
+</head>
+<body>
+
+<div id="slide-nav">
+  <span id="slide-count">1 / 12</span>
+  <button class="nav-btn prev" id="prevBtn" aria-label="Slide sebelumnya" onclick="goSlide(-1)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15 12 9 6 15"/></svg>
+  </button>
+  <button class="nav-btn next" id="nextBtn" aria-label="Slide berikutnya" onclick="goSlide(1)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9 12 15 18 9"/></svg>
+  </button>
+</div>
+
+<div id="shield-hud">
+  <svg viewBox="0 0 52 58" fill="none">
+    <path id="shield-bg" d="M26 6c-3-2-9-3-14-2-3 .6-4 2-4 3.6V48c0 1.6 1.4 2.4 3 2 5-1 10 0 15 2 5-2 10-3 15-2 1.6.4 3-.4 3-2V7.6c0-1.6-1-3-4-3.6-5-1-11 0-14 2Z" fill="#E8EAF0" stroke="#27314F" stroke-width="1.5"/>
+    <path id="shield-fill" d="M26 6c-3-2-9-3-14-2-3 .6-4 2-4 3.6V48c0 1.6 1.4 2.4 3 2 5-1 10 0 15 2 5-2 10-3 15-2 1.6.4 3-.4 3-2V7.6c0-1.6-1-3-4-3.6-5-1-11 0-14 2Z" fill="#FF8C7A"/>
+    <path d="M26 6v46" stroke="#27314F" stroke-width="1.2" opacity=".4"/>
+  </svg>
+  <div id="shield-pct">0%</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="float-shape s1"></div>
+  <div class="float-shape s2"></div>
+  <div class="float-shape s3"></div>
+  <svg class="hero-shield-big" viewBox="0 0 52 58" fill="none"><path d="M26 6c-3-2-9-3-14-2-3 .6-4 2-4 3.6V48c0 1.6 1.4 2.4 3 2 5-1 10 0 15 2 5-2 10-3 15-2 1.6.4 3-.4 3-2V7.6c0-1.6-1-3-4-3.6-5-1-11 0-14 2Z" fill="#FFC94A"/></svg>
+  <div class="wrap">
+    <div class="hero-badge">Materi MPLS · Cinta Al-Qur'an</div>
+    <h1 class="reveal in-view">Yuk, Jadikan<br><span>Al-Qur'an</span> Sahabat Sehari-hari</h1>
+    <p class="lead reveal d1 in-view">Al-Qur'an bukan sekadar buku yang disimpan di rak. Dia adalah pedoman hidup, penenang hati, dan sahabat yang selalu siap menemani — kalau kita mau membukanya.</p>
+    <p class="reveal d2 in-view" style="font-size:13px; color:#8892AB; margin-top:2px;">⏱ Total durasi sesi: ± 45–50 menit</p>
+    <a href="#pembukaan" class="btn reveal d2 in-view">Mulai Materi ↓</a>
+    <div class="author-tag reveal d2 in-view">
+      <div class="line"></div>
+      <span>Disusun oleh Mrs. Nuri Frasna Vitara, S. Pd.</span>
+    </div>
+  </div>
+</section>
+
+<!-- PEMBUKAAN -->
+<section id="pembukaan">
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF8C7A" stroke-width="2" stroke-linecap="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5Z"/></svg>
+    </div>
+    <div class="eyebrow reveal">Pembukaan <span class="duration">⏱ 3 menit</span></div>
+    <h2 class="kicker-title reveal">Kapan terakhir kali kamu membuka Al-Qur'an?</h2>
+    <p class="reveal d1" style="margin-top:14px;">Coba jujur ke diri sendiri. Bukan pertanyaan untuk menghakimi, tapi untuk mulai sadar — mungkin Al-Qur'an di rumah kita lebih sering berdebu daripada terbuka.</p>
+    <blockquote class="reveal d1">"Kalau kita punya sahabat yang selalu menunggu untuk diajak bicara, tapi kita malah sibuk dengan yang lain — sahabat itu bernama Al-Qur'an."</blockquote>
+    <div class="reveal-box reveal d2">
+      <button class="reveal-btn" onclick="toggleReveal(this)">Kenapa ini penting? →</button>
+      <div class="reveal-answer">Karena hari ini kita akan belajar bahwa <strong>mencintai Al-Qur'an</strong> itu sederhana, bisa dimulai dari hal kecil, dan akan mengubah cara kita menjalani hari — mulai sekarang.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ICE BREAKING: TEPUK CINTA QUR'AN -->
+<section class="navy-bg">
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FFC94A" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7.5-4.6-9.5-9.2C.9 8 3 4.5 6.5 4.5c2 0 3.5 1.2 4.5 2.7 1-1.5 2.5-2.7 4.5-2.7 3.5 0 5.6 3.5 4 7.3C19.5 16.4 12 21 12 21Z"/></svg>
+    </div>
+    <div class="eyebrow reveal">Ice Breaking <span class="duration">⏱ 3 menit</span></div>
+    <h2 class="kicker-title reveal">"Tepuk Cinta Qur'an"</h2>
+    <p class="reveal d1" style="margin-top:10px; max-width:52ch;">Guru mengucapkan kata di kolom kiri, siswa tepuk tangan lalu sahut dengan kata di kolom kanan. Ulangi makin cepat tiap putaran!</p>
+    <div class="card reveal d2" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.12); margin-top:18px;">
+      <div class="tepuk-row">
+        <div class="tepuk-side tepuk-guru">Al-Qur'an!</div>
+        <div class="tepuk-arrow">→</div>
+        <div class="tepuk-side tepuk-siswa">Pedoman Hidup!</div>
+      </div>
+      <div class="tepuk-row">
+        <div class="tepuk-side tepuk-guru">Malas baca?</div>
+        <div class="tepuk-arrow">→</div>
+        <div class="tepuk-side tepuk-siswa">Mulai 5 Ayat!</div>
+      </div>
+      <div class="tepuk-row">
+        <div class="tepuk-side tepuk-guru">Hati kita?</div>
+        <div class="tepuk-arrow">→</div>
+        <div class="tepuk-side tepuk-siswa">Dekat Qur'an!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERI 1: APA ITU AL-QUR'AN -->
+<section>
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#27314F" stroke-width="2" stroke-linecap="round"><path d="M12 2 3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6l-9-4Z"/></svg>
+    </div>
+    <div class="eyebrow reveal">Materi 1 <span class="duration">⏱ 5 menit</span></div>
+    <h2 class="kicker-title reveal">Al-Qur'an, Bukan Sekadar Kitab</h2>
+    <p class="reveal d1" style="margin-top:14px; max-width:56ch;">Al-Qur'an adalah <strong>kalam Allah</strong> yang diturunkan kepada Nabi Muhammad ﷺ melalui Malaikat Jibril, sebagai <strong>petunjuk hidup</strong> bagi seluruh manusia — bukan hanya untuk dibaca, tapi untuk dipahami dan diamalkan.</p>
+    <div class="arabic-line reveal d1">هُدًى لِلنَّاسِ وَبَيِّنَاتٍ مِنَ الْهُدَى وَالْفُرْقَانِ</div>
+    <p class="reveal d1" style="font-size:13.5px; font-style:italic;">"...menjadi petunjuk bagi manusia, penjelasan atas petunjuk itu, dan pembeda (antara yang benar dan yang batil)." (QS. Al-Baqarah: 185)</p>
+    <div class="grid cols-2 reveal d2" style="margin-top:22px;">
+      <div class="card">
+        <div style="font-size:22px; margin-bottom:8px;">📖</div>
+        <h3 style="font-size:16px;">Fungsinya untuk kita</h3>
+        <p>Petunjuk jalan hidup, obat penenang hati, sumber ilmu, dan pembeda benar dari salah.</p>
+      </div>
+      <div class="card" style="background:#FFF1EC; border-color:#FFD5C9;">
+        <div style="font-size:22px; margin-bottom:8px;">🕊️</div>
+        <h3 style="font-size:16px;">Keistimewaannya</h3>
+        <p>Terjaga keasliannya sampai hari kiamat, tidak pernah berubah satu huruf pun sejak diturunkan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERI 2: KEUTAMAAN MEMBACA -->
+<section class="navy-bg">
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FFC94A" stroke-width="2" stroke-linecap="round"><path d="M12 17.75 5.8 21l1.2-7-5-4.9 6.9-1L12 2l3.1 6.1 6.9 1-5 4.9 1.2 7Z"/></svg>
+    </div>
+    <div class="eyebrow reveal">Materi 2 <span class="duration">⏱ 6 menit</span></div>
+    <h2 class="kicker-title reveal">Satu Huruf, Sepuluh Pahala</h2>
+    <p class="reveal d1" style="margin-top:14px; max-width:58ch;">Rasulullah ﷺ bersabda bahwa membaca satu huruf Al-Qur'an dibalas dengan sepuluh kebaikan — bukan satu kata, satu <em>huruf</em>. Bayangkan berapa pahala dalam satu halaman yang kita baca.</p>
+    <blockquote class="reveal d2">"Barang siapa membaca satu huruf dari Kitabullah, maka baginya satu kebaikan, dan satu kebaikan dibalas sepuluh kali lipat." (HR. Tirmidzi)</blockquote>
+    <div class="card reveal d2" style="background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.12); margin-top:8px;">
+      <p style="color:#F3EEE0; font-weight:600; margin-bottom:12px;">Coba hitung pahala membaca "الم" saja:</p>
+      <div class="pahala-row"><span>Alif</span><span class="num">10 pahala</span></div>
+      <div class="pahala-row"><span>Lam</span><span class="num">10 pahala</span></div>
+      <div class="pahala-row"><span>Mim</span><span class="num">10 pahala</span></div>
+      <div class="pahala-total">Total baca "الم" saja = 30 pahala ✨</div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERI 3: ADAB BERSAMA AL-QUR'AN -->
+<section class="mint-bg">
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#1D4A3A" stroke-width="2" stroke-linecap="round"><path d="M4 19V5a2 2 0 0 1 2-2h13.4a.6.6 0 0 1 .6.6v12.8a.6.6 0 0 1-.6.6H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h13"/></svg>
+    </div>
+    <div class="eyebrow reveal" style="color:#1D4A3A;">Materi 3 <span class="duration">⏱ 6 menit</span></div>
+    <h2 class="kicker-title reveal">Adab Sebelum, Saat, dan Setelah Membaca</h2>
+    <p class="reveal d1" style="margin-top:14px;">Al-Qur'an dimuliakan, maka cara kita memperlakukannya pun harus penuh adab. Ketuk tiap kartu untuk lihat penjelasannya.</p>
+    <div class="reveal d2" style="margin-top:20px;">
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>🤲 Sebelum membaca <span class="tag">Persiapan</span></span><span class="plus">+</span></div>
+        <div class="acc-body"><p>Berwudu, duduk dengan sopan, membaca ta'awudz dan basmalah, serta niat yang ikhlas karena Allah.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>📖 Saat membaca <span class="tag">Fokus</span></span><span class="plus">+</span></div>
+        <div class="acc-body"><p>Membaca dengan tartil (perlahan dan jelas), memperhatikan makhraj huruf, serta merenungkan artinya, bukan sekadar mengejar cepat selesai.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>🕋 Menjaga mushaf <span class="tag">Menghormati</span></span><span class="plus">+</span></div>
+        <div class="acc-body"><p>Menyimpan di tempat bersih dan tinggi, tidak meletakkan barang di atasnya, dan tidak membawanya ke tempat yang tidak layak.</p></div>
+      </div>
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)"><span>✨ Setelah membaca <span class="tag">Mengamalkan</span></span><span class="plus">+</span></div>
+        <div class="acc-body"><p>Merenungkan (tadabbur) satu ayat yang paling menyentuh, lalu berusaha mempraktikkannya dalam keseharian.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERI 4: TIGA LANGKAH CINTA QURAN -->
+<section>
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#27314F" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="18" cy="9" r="2.4"/><path d="M15.7 14.2c2.7.3 4.8 2.3 4.8 5.3"/></svg>
+    </div>
+    <div class="eyebrow reveal">Materi 4 <span class="duration">⏱ 5 menit</span></div>
+    <h2 class="kicker-title reveal">Tiga Langkah Mencintai Al-Qur'an</h2>
+    <p class="reveal d1" style="margin-top:14px;">Cinta itu dibuktikan dengan kedekatan, bukan hanya perasaan. Ini tiga langkah sederhana yang bisa dimulai siapa saja, dari sekarang.</p>
+    <div class="grid cols-3 reveal d2" style="margin-top:20px;">
+      <div class="role-card role-1"><h3>1. Membaca</h3><p>Luangkan minimal 5 menit sehari untuk membaca, walau hanya beberapa ayat. Konsisten lebih penting daripada banyak.</p></div>
+      <div class="role-card role-2"><h3>2. Memahami</h3><p>Baca artinya, cari tahu maksudnya. Al-Qur'an akan terasa hidup ketika kita mengerti apa yang sedang kita baca.</p></div>
+      <div class="role-card role-3"><h3>3. Mengamalkan</h3><p>Pilih satu pesan dari ayat yang dibaca, lalu praktikkan hari itu juga — sekecil apa pun bentuknya.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- KISAH TELADAN -->
+<section class="navy-bg">
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FFC94A" stroke-width="2" stroke-linecap="round"><path d="M9.1 9a3 3 0 1 1 4.8 2.4c-.9.7-1.9 1.2-1.9 2.6M12 17.5h.01"/><circle cx="12" cy="12" r="9.5"/></svg>
+    </div>
+    <div class="eyebrow reveal">Renungan <span class="duration">⏱ 4 menit</span></div>
+    <h2 class="kicker-title reveal">Al-Qur'an akan Menemanimu Kelak</h2>
+    <p class="reveal d1" style="margin-top:14px; max-width:58ch;">Orang yang mahir membaca Al-Qur'an akan bersama para malaikat yang mulia. Sedangkan yang membaca terbata-bata namun tetap berusaha, tetap mendapat dua pahala: pahala membaca dan pahala kesungguhannya.</p>
+    <blockquote class="reveal d2">"Orang yang mahir membaca Al-Qur'an akan bersama para malaikat yang mulia lagi taat. Sedangkan orang yang membaca Al-Qur'an dengan terbata-bata dan merasa kesulitan, maka ia mendapat dua pahala." (HR. Bukhari &amp; Muslim)</blockquote>
+    <p class="reveal d2">Jadi, jangan minder kalau bacaanmu masih belum lancar. Justru di situ letak pahala perjuanganmu.</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="sky-bg">
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#144A5C" stroke-width="2" stroke-linecap="round"><path d="M9.1 9a3 3 0 1 1 4.8 2.4c-.9.7-1.9 1.2-1.9 2.6M12 17.5h.01"/><circle cx="12" cy="12" r="9.5"/></svg>
+    </div>
+    <div class="eyebrow reveal" style="color:#144A5C;">Permainan <span class="duration">⏱ 5 menit</span></div>
+    <h2 class="kicker-title reveal">Benar atau Salah?</h2>
+    <p class="reveal d1" style="margin-top:14px;">Ketuk jawabanmu untuk tiap pernyataan.</p>
+    <div id="quiz" class="reveal d2" style="margin-top:22px;"></div>
+    <div id="quiz-score"></div>
+  </div>
+</section>
+
+<!-- REFLEKSI -->
+<section>
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#27314F" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg>
+    </div>
+    <div class="eyebrow reveal">Refleksi <span class="duration">⏱ 3 menit</span></div>
+    <h2 class="kicker-title reveal">Sebelum Lanjut, Coba Jawab Ini</h2>
+    <div class="card reveal d1" style="margin-top:18px;">
+      <p style="color:var(--navy); font-weight:600; margin-bottom:6px;">"Satu kebiasaan kecil apa yang bisa aku mulai hari ini supaya lebih dekat dengan Al-Qur'an?"</p>
+      <p style="font-size:13.5px;">Diskusikan singkat dengan teman sebangku, lalu 2–3 siswa berbagi jawaban ke seluruh kelas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TANTANGAN -->
+<section class="navy-bg">
+  <div class="wrap">
+    <div class="icon-badge reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FFC94A" stroke-width="2" stroke-linecap="round"><path d="M6 9H4.5A2.5 2.5 0 0 1 2 6.5 2.5 2.5 0 0 1 4.5 4H6m12 5h1.5A2.5 2.5 0 0 0 22 6.5 2.5 2.5 0 0 0 19.5 4H18M6 4h12v6a6 6 0 0 1-12 0Zm2 16h8m-4-4v4"/></svg>
+    </div>
+    <div class="eyebrow reveal">Tantangan MPLS <span class="duration">⏱ 4 menit</span></div>
+    <h2 class="kicker-title reveal">Challenge 5 Hari: Dekat dengan Al-Qur'an</h2>
+    <div class="card reveal d1" style="margin-top:20px; background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.12);">
+      <div class="day-row"><div class="day-num">1</div><p style="color:#C7CDE0;">Baca 5 ayat Al-Qur'an sebelum berangkat sekolah, sekaligus latihan tajwidnya.</p></div>
+      <div class="day-row"><div class="day-num">2</div><p style="color:#C7CDE0;">Baca 5 ayat, lalu cari artinya dan ceritakan ke satu teman.</p></div>
+      <div class="day-row"><div class="day-num">3</div><p style="color:#C7CDE0;">Baca 5 ayat, pilih satu pesan, dan praktikkan hari itu juga.</p></div>
+      <div class="day-row"><div class="day-num">4</div><p style="color:#C7CDE0;">Baca 5 ayat bersama keluarga di rumah, sambil bergantian membaca.</p></div>
+      <div class="day-row"><div class="day-num">5</div><p style="color:#C7CDE0;">Baca 5 ayat, lalu tuliskan satu perubahan kecil yang kamu rasakan minggu ini.</p></div>
+    </div>
+    <p class="reveal d2" style="margin-top:16px; font-size:14px;">Targetnya bukan sempurna. Targetnya membiasakan diri agar hati semakin dekat dengan Al-Qur'an, sedikit demi sedikit.</p>
+  </div>
+</section>
+
+<!-- PENUTUP -->
+<footer>
+  <div class="wrap inner">
+    <div class="divider"></div>
+    <h2 style="color:#fff; font-size:23px;">Al-Qur'an akan menjadi sahabat terbaik bagi siapa saja yang mau mendekatinya.</h2>
+    <p style="max-width:50ch; margin:14px auto 0; color:#C7CDE0;">Semoga mulai hari ini, Al-Qur'an bukan lagi buku yang berdebu di rak, tapi sahabat yang menemani setiap langkah dan mengisi setiap hari kita.</p>
+    <div class="arabic">اللَّهُمَّ اجْعَلِ الْقُرْآنَ الْعَظِيمَ رَبِيعَ قُلُوبِنَا وَنُورَ صُدُورِنَا</div>
+    <p style="font-style:italic; max-width:48ch; margin:0 auto;">"Ya Allah, jadikanlah Al-Qur'an yang agung ini sebagai penyejuk hati kami dan cahaya di dada kami."</p>
+    <small>Materi MPLS Cinta Al-Qur'an · Disusun oleh Mrs. Nuri Frasna Vitara, S. Pd.</small>
+  </div>
+</footer>
+
+<script>
+  function toggleAcc(head){
+    const item = head.parentElement;
+    const body = item.querySelector('.acc-body');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(el=>{
+      el.classList.remove('open');
+      el.querySelector('.acc-body').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+
+  function toggleReveal(btn){
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.style.display = 'none';
+  }
+
+  const quizData = [
+    { q: "Al-Qur'an diturunkan kepada Nabi Muhammad ﷺ melalui Malaikat Jibril.", answer:true, note:"Benar, Al-Qur'an diwahyukan secara berangsur-angsur melalui perantara Malaikat Jibril." },
+    { q: "Pahala membaca Al-Qur'an dihitung per kata yang dibaca, bukan per huruf.", answer:false, note:"Pahala dihitung per huruf, bukan per kata — satu huruf dibalas sepuluh kebaikan." },
+    { q: "Orang yang bacaannya masih terbata-bata tidak mendapat pahala sama sekali.", answer:false, note:"Justru ia mendapat dua pahala: pahala membaca dan pahala atas kesungguhannya." },
+    { q: "Tadabbur artinya merenungkan dan memahami makna ayat yang dibaca.", answer:true, note:"Benar, tadabbur membuat bacaan kita lebih bermakna, bukan sekadar melafalkan." }
+  ];
+
+  const quizEl = document.getElementById('quiz');
+  let answered = 0, correctCount = 0;
+
+  quizData.forEach((item, idx) => {
+    const w = document.createElement('div');
+    w.className = 'quiz-item';
+    w.innerHTML = `
+      <p class="q">${idx+1}. ${item.q}</p>
+      <div class="quiz-btns">
+        <button class="qbtn" data-val="true">✓ Benar</button>
+        <button class="qbtn" data-val="false">✕ Salah</button>
+      </div>
+      <div class="qfeedback">${item.note}</div>
+    `;
+    quizEl.appendChild(w);
+    const btns = w.querySelectorAll('.qbtn');
+    btns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const chosen = btn.dataset.val === 'true';
+        btns.forEach(b=>{
+          b.disabled = true;
+          const bVal = b.dataset.val === 'true';
+          if(bVal === item.answer) b.classList.add('correct');
+          else if(b === btn) b.classList.add('wrong');
+        });
+        w.querySelector('.qfeedback').classList.add('show');
+        answered++;
+        if(chosen === item.answer) correctCount++;
+        if(answered === quizData.length){
+          const scoreEl = document.getElementById('quiz-score');
+          scoreEl.textContent = `Skor kamu: ${correctCount}/${quizData.length} — ${correctCount===quizData.length ? 'Mantap, kamu paham banget! 🎉' : 'Yuk baca ulang materinya sebentar 😊'}`;
+          scoreEl.classList.add('show');
+        }
+      });
+    });
+  });
+
+  const fillPath = document.getElementById('shield-fill');
+  const pctLabel = document.getElementById('shield-pct');
+  function updateShield(){
+    const scrollTop = window.scrollY;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = Math.min(100, Math.max(0, (scrollTop / docH) * 100));
+    fillPath.style.clipPath = `inset(${100 - pct}% 0 0 0)`;
+    pctLabel.textContent = Math.round(pct) + '%';
+    pctLabel.style.color = pct > 55 ? '#fff' : '#27314F';
+  }
+  window.addEventListener('scroll', updateShield);
+  updateShield();
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold:0.15 });
+  document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+  // ===== One-click slide navigation =====
+  const slides = Array.from(document.querySelectorAll('section, footer'));
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const slideCount = document.getElementById('slide-count');
+
+  function currentSlideIndex(){
+    const mid = window.scrollY + window.innerHeight / 2;
+    let idx = 0;
+    slides.forEach((s, i)=>{
+      if(s.offsetTop <= mid) idx = i;
+    });
+    return idx;
+  }
+
+  function goSlide(dir){
+    const idx = currentSlideIndex();
+    const target = slides[Math.min(slides.length - 1, Math.max(0, idx + dir))];
+    target.scrollIntoView({ behavior:'smooth' });
+  }
+
+  function updateNav(){
+    const idx = currentSlideIndex();
+    slideCount.textContent = `${idx + 1} / ${slides.length}`;
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === slides.length - 1;
+  }
+
+  window.addEventListener('scroll', updateNav);
+  window.addEventListener('resize', updateNav);
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowDown' || e.key === 'PageDown'){ e.preventDefault(); goSlide(1); }
+    if(e.key === 'ArrowUp' || e.key === 'PageUp'){ e.preventDefault(); goSlide(-1); }
+  });
+  updateNav();
+</script>
+</body>
+</html>

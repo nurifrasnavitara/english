@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuri Frasna Vitara, S.Pd. — Guru Bahasa Inggris</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8EE;
+    --honey:#FFC94A;
+    --coral:#FF8C7A;
+    --mint:#A9DFC9;
+    --sky:#9FD8E8;
+    --navy:#27314F;
+    --navy-soft:#4A5578;
+    --navy-muted:#8892AB;
+    --gold:#E8A93C;
+    --white:#FFFFFF;
+    --border:#E8EAF0;
+    --bg-soft:#F7F8FB;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --shadow:0 18px 40px -18px rgba(39,49,79,0.22);
+    --font-display:'Fredoka',sans-serif;
+    --font-body:'Poppins',sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--cream);
+    color:var(--navy);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+  section{padding:96px 0;}
+  h1,h2,h3,h4{font-family:var(--font-display);}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-body);font-weight:600;font-size:13px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--gold);
+    background:rgba(255,201,74,.16);border:1px solid rgba(232,169,60,.35);
+    padding:7px 16px;border-radius:999px;margin-bottom:18px;
+  }
+  .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--coral);}
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,248,238,.88);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    max-width:1120px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--navy);}
+  .brand-mark{
+    width:38px;height:38px;border-radius:12px;
+    background:linear-gradient(135deg,var(--coral),var(--honey));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--white);font-size:18px;font-weight:700;flex-shrink:0;
+  }
+  .nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:500;color:var(--navy-soft);}
+  .nav-links a{position:relative;padding:4px 0;transition:color .2s;}
+  .nav-links a:hover{color:var(--coral);}
+  .nav-cta{
+    background:var(--navy);color:var(--white);
+    padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+  .burger{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;padding:80px 0 100px;
+    background:
+      radial-gradient(560px 360px at 88% -6%, rgba(159,216,232,.45), transparent 60%),
+      radial-gradient(480px 320px at 8% 8%, rgba(255,201,74,.35), transparent 60%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+  }
+  .hero-kicker{font-family:var(--font-display);font-weight:500;color:var(--coral);font-size:16px;margin-bottom:10px;letter-spacing:.02em;}
+  .hero h1{font-size:52px;line-height:1.1;color:var(--navy);font-weight:600;margin-bottom:18px;}
+  .hero h1 span{color:var(--coral);}
+  .hero-desc{font-size:16.5px;color:var(--navy-soft);max-width:520px;margin-bottom:14px;}
+  .hero-motto{
+    font-family:var(--font-display);font-style:normal;font-size:19px;color:var(--gold);
+    margin-bottom:32px;position:relative;padding-left:18px;
+  }
+  .hero-motto::before{content:'"';position:absolute;left:0;top:-4px;font-size:26px;color:var(--honey);}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:15px 26px;border-radius:999px;font-weight:600;font-size:15px;
+    transition:transform .22s ease, box-shadow .22s ease;
+    border:none;cursor:pointer;
+  }
+  .btn-primary{background:var(--navy);color:var(--white);}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 26px -10px rgba(39,49,79,.5);}
+  .btn-quran{
+    background:linear-gradient(135deg,var(--mint),#8ccdb1);
+    color:var(--navy);
+  }
+  .btn-quran:hover{transform:translateY(-3px);box-shadow:0 14px 26px -10px rgba(169,223,201,.9);}
+  .btn-ghost{
+    background:var(--white);color:var(--navy);border:1.5px solid var(--border);
+  }
+  .btn-ghost:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-3px);}
+
+  .hero-photo-wrap{position:relative;justify-self:center;}
+  .hero-photo{
+    width:320px;height:380px;border-radius:var(--radius-lg);
+    overflow:hidden;box-shadow:var(--shadow);border:6px solid var(--white);
+    position:relative;z-index:2;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .badge-float{
+    position:absolute;background:var(--white);border-radius:16px;
+    box-shadow:var(--shadow);padding:12px 16px;display:flex;align-items:center;gap:10px;
+    font-size:13px;font-weight:600;color:var(--navy);z-index:3;
+  }
+  .badge-float .dot{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+  .badge-1{top:12px;left:-42px;}
+  .badge-1 .dot{background:rgba(255,140,122,.18);}
+  .badge-2{bottom:26px;right:-38px;}
+  .badge-2 .dot{background:rgba(159,216,232,.35);}
+  .hero-blob{
+    position:absolute;width:360px;height:360px;border-radius:44% 56% 62% 38% / 42% 40% 60% 58%;
+    background:linear-gradient(135deg,var(--honey),var(--coral));opacity:.18;
+    top:-30px;left:8%;z-index:1;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .sec-head{max-width:620px;margin-bottom:48px;}
+  .sec-head h2{font-size:34px;color:var(--navy);font-weight:600;line-height:1.2;}
+  .sec-head p{color:var(--navy-soft);margin-top:12px;font-size:15.5px;}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .about-text p{color:var(--navy-soft);margin-bottom:16px;font-size:15.5px;}
+  .about-motto-card{
+    margin-top:8px;background:var(--cream);border-radius:var(--radius-md);
+    padding:22px 24px;border-left:4px solid var(--coral);
+  }
+  .about-motto-card strong{font-family:var(--font-display);color:var(--navy);font-size:15px;}
+
+  .info-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .info-card{
+    background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-md);
+    padding:22px;
+  }
+  .info-card .icon{
+    width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:18px;margin-bottom:12px;
+  }
+  .info-card h4{font-size:15px;color:var(--navy);margin-bottom:6px;}
+  .info-card p{font-size:13.5px;color:var(--navy-muted);}
+  .ic-1{background:rgba(255,140,122,.16);}
+  .ic-2{background:rgba(159,216,232,.35);}
+  .ic-3{background:rgba(169,223,201,.4);}
+  .ic-4{background:rgba(255,201,74,.28);}
+
+  /* ===== TIMELINE / EXPERIENCE ===== */
+  .experience{background:var(--cream);}
+  .timeline{position:relative;padding-left:34px;}
+  .timeline::before{
+    content:'';position:absolute;left:9px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--coral),var(--sky));
+  }
+  .t-item{position:relative;padding-bottom:38px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:'';position:absolute;left:-34px;top:4px;width:20px;height:20px;border-radius:50%;
+    background:var(--white);border:3px solid var(--coral);
+  }
+  .t-item.alt::before{border-color:var(--sky);}
+  .t-item.alt2::before{border-color:var(--mint);}
+  .t-item.alt3::before{border-color:var(--honey);}
+  .t-card{
+    background:var(--white);border-radius:var(--radius-md);padding:24px 26px;
+    box-shadow:0 10px 24px -16px rgba(39,49,79,.18);border:1px solid var(--border);
+  }
+  .t-card .role{font-family:var(--font-display);font-size:18px;color:var(--navy);font-weight:600;}
+  .t-card .meta{font-size:13.5px;color:var(--gold);font-weight:600;margin:4px 0 12px;}
+  .t-card ul li{
+    font-size:14.5px;color:var(--navy-soft);position:relative;padding-left:18px;margin-bottom:6px;
+  }
+  .t-card ul li::before{content:'•';position:absolute;left:0;color:var(--coral);font-weight:700;}
+
+  /* ===== SKILLS ===== */
+  .skills{background:var(--white);}
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .skill-card{
+    background:var(--bg-soft);border-radius:var(--radius-md);padding:28px 24px;
+    border:1px solid var(--border);transition:transform .2s, box-shadow .2s;
+  }
+  .skill-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+  .skill-card .icon{
+    width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    font-size:22px;margin-bottom:16px;
+  }
+  .skill-card h4{font-size:17px;color:var(--navy);margin-bottom:10px;}
+  .skill-card ul li{font-size:14px;color:var(--navy-soft);margin-bottom:6px;padding-left:16px;position:relative;}
+  .skill-card ul li::before{content:'—';position:absolute;left:0;color:var(--navy-muted);}
+  .sk-1 .icon{background:rgba(255,140,122,.16);}
+  .sk-2 .icon{background:rgba(159,216,232,.35);}
+  .sk-3 .icon{background:rgba(169,223,201,.4);}
+
+  .soft-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px;}
+  .pill{
+    background:var(--white);border:1.5px solid var(--border);color:var(--navy-soft);
+    padding:11px 20px;border-radius:999px;font-size:14px;font-weight:500;
+  }
+
+  /* ===== EDUCATION / CERT ===== */
+  .edu{background:var(--cream);}
+  .edu-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;}
+  .edu-list{display:flex;flex-direction:column;gap:14px;}
+  .edu-item{
+    background:var(--white);border-radius:var(--radius-md);padding:18px 22px;
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    border:1px solid var(--border);
+  }
+  .edu-item .yr{font-family:var(--font-display);color:var(--coral);font-weight:600;font-size:14px;white-space:nowrap;}
+  .edu-item .nm{font-size:14.5px;color:var(--navy);font-weight:600;}
+  .edu-item .inst{font-size:12.5px;color:var(--navy-muted);}
+
+  .cert-box{background:var(--white);border-radius:var(--radius-md);padding:28px;border:1px solid var(--border);}
+  .cert-box h4{font-size:16px;color:var(--navy);margin-bottom:16px;}
+  .cert-box ul li{
+    font-size:14px;color:var(--navy-soft);padding:10px 0;border-bottom:1px dashed var(--border);
+  }
+  .cert-box ul li:last-child{border-bottom:none;}
+
+  /* ===== TECH & ORG ===== */
+  .tech{background:var(--white);}
+  .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .tag{
+    background:var(--bg-soft);border:1px solid var(--border);padding:9px 16px;
+    border-radius:12px;font-size:13.5px;color:var(--navy-soft);font-weight:500;
+  }
+  .org-list{display:flex;flex-direction:column;gap:12px;}
+  .org-item{
+    display:flex;gap:14px;align-items:flex-start;
+    background:var(--bg-soft);border-radius:var(--radius-md);padding:16px 18px;border:1px solid var(--border);
+  }
+  .org-item .yr-tag{
+    background:var(--navy);color:var(--white);font-size:11.5px;font-weight:600;
+    padding:5px 10px;border-radius:8px;white-space:nowrap;margin-top:2px;
+  }
+  .org-item p{font-size:14px;color:var(--navy);font-weight:500;}
+
+  /* ===== CTA MATERI ===== */
+  .cta-materi{
+    background:linear-gradient(135deg,#2f3b5e,var(--navy) 60%);
+    border-radius:var(--radius-lg);padding:56px 48px;
+    display:flex;align-items:center;justify-content:space-between;gap:40px;
+    position:relative;overflow:hidden;
+  }
+  .cta-materi::before{
+    content:'';position:absolute;width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle,rgba(169,223,201,.35),transparent 70%);
+    top:-90px;right:-60px;
+  }
+  .cta-materi::after{
+    content:'';position:absolute;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,201,74,.25),transparent 70%);
+    bottom:-80px;left:-40px;
+  }
+  .cta-text{position:relative;z-index:2;max-width:560px;}
+  .cta-text .eyebrow{background:rgba(169,223,201,.18);border-color:rgba(169,223,201,.4);color:var(--mint);}
+  .cta-text h3{font-size:30px;color:var(--white);font-weight:600;margin-bottom:12px;line-height:1.25;}
+  .cta-text p{color:rgba(255,255,255,.72);font-size:15px;}
+  .cta-btn-wrap{position:relative;z-index:2;flex-shrink:0;}
+  .btn-big{
+    background:var(--mint);color:var(--navy);padding:19px 34px;border-radius:18px;
+    font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:10px;
+    box-shadow:0 16px 30px -12px rgba(169,223,201,.55);
+    transition:transform .22s ease;
+  }
+  .btn-big:hover{transform:translateY(-4px) scale(1.02);}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--navy);color:rgba(255,255,255,.7);padding:56px 0 28px;}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .foot-brand{display:flex;align-items:center;gap:10px;color:var(--white);font-family:var(--font-display);font-size:19px;font-weight:600;}
+  .foot-contact{display:flex;gap:34px;flex-wrap:wrap;font-size:13.5px;}
+  .foot-contact div span{display:block;color:rgba(255,255,255,.45);font-size:11.5px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em;}
+  .foot-bottom{padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.45);}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero-desc,.hero-motto{margin-left:auto;margin-right:auto;}
+    .hero-photo-wrap{order:-1;margin:0 auto;}
+    .hero-actions{justify-content:center;}
+    .about-grid,.edu-grid,.tech-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .cta-materi{flex-direction:column;text-align:center;padding:44px 28px;}
+    .info-cards{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:560px){
+    .hero h1{font-size:36px;}
+    .skills-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+    .badge-float{display:none;}
+    .foot-grid,.foot-bottom{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker">Assalamu'alaikum, saya</div>
+      <h1>Nuri Frasna Vitara, <span>S.Pd.</span></h1>
+      <p class="hero-desc">Guru Bahasa Inggris di SMP Muhammadiyah 9 Nagreg dengan pengalaman lebih dari 5 tahun mengajar, aktif mengembangkan kurikulum berbasis Kurikulum Merdeka, serta membina Tahsin Al-Qur'an, Hizbul Wathan, dan PMR.</p>
+      <p class="hero-motto">Fastabiqul Khairat!</p>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-blob"></div>
+      <div class="hero-photo">
+        <img src="https://lh3.googleusercontent.com/d/1mOXrVtwpSxGh-aMYyYUHnmXmOOvlP38M" alt="Nuri Frasna Vitara, S.Pd.">
+      </div>
+      <div class="badge-float badge-1"><div class="dot">🕌</div> Pembina Tahsin<br>Al-Qur'an</div>
+      <div class="badge-float badge-2"><div class="dot">🎓</div> 8+ Tahun<br>Mengajar</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="tentang">
+  <div class="wrap">
+    <div class="eyebrow">Tentang Saya</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Guru Bahasa Inggris dengan pengalaman lebih dari 5 tahun mengajar di tingkat SMP, serta berpengalaman dalam pengembangan kurikulum berbasis Kurikulum Merdeka. Memiliki keahlian dalam merancang dan mengimplementasikan metode pembelajaran yang inovatif dan sesuai dengan kebutuhan siswa, termasuk penerapan teknologi pembelajaran terkini.</p>
+        <p>Mampu membangun komunikasi yang efektif dengan siswa, orang tua, serta rekan guru untuk menciptakan lingkungan belajar yang kondusif dan inspiratif. Menguasai teknik pengajaran empat keterampilan bahasa (listening, speaking, reading, writing) secara terpadu, serta berpengalaman dalam menyusun materi ajar.</p>
+        <div class="about-motto-card">
+          <strong>Komitmen Pribadi:</strong>
+          <p style="margin-top:6px;font-size:14px;color:var(--navy-soft);">Berkomitmen tinggi untuk berpenampilan rapi dan sopan sesuai syariat Islam, serta mengintegrasikan nilai-nilai akhlak Islami dalam setiap proses pembelajaran.</p>
+        </div>
+      </div>
+      <div class="info-cards">
+        <div class="info-card"><div class="icon ic-1">📍</div><h4>Domisili</h4><p>Kp. Ciaro, Desa Ciaro, Kec. Nagreg, Kab. Bandung, Jawa Barat</p></div>
+        <div class="info-card"><div class="icon ic-2">✉️</div><h4>Email</h4><p>nurifrasnavitara7@gmail.com</p></div>
+        <div class="info-card"><div class="icon ic-3">📱</div><h4>Kontak</h4><p>+62 857 9325 9563</p></div>
+        <div class="info-card"><div class="icon ic-4">📸</div><h4>Instagram</h4><p>@nurifrasna_</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="pengalaman">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Perjalanan</div>
+      <h2>Pengalaman Kerja & Pembinaan</h2>
+      <p>Sejak 2018 aktif mengajar sekaligus membina berbagai kegiatan siswa di SMP Muhammadiyah 9 Nagreg.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-card">
+          <div class="role">Guru Bahasa Inggris</div>
+          <div class="meta">SMP Muhammadiyah 9 Nagreg • Juli 2018 – Sekarang</div>
+          <ul>
+            <li>Mengajar Bahasa Inggris untuk kelas VII, VIII, dan IX.</li>
+            <li>Mengembangkan perangkat ajar berbasis Kurikulum Merdeka.</li>
+            <li>Membimbing siswa dalam lomba pidato Bahasa Inggris.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-item alt">
+        <div class="t-card">
+          <div class="role">Pembina Tahsin Al-Qur'an</div>
+          <div class="meta">SMP Muhammadiyah 9 Nagreg • Juli 2018 – Sekarang</div>
+          <ul>
+            <li>Mengajarkan tahsin mulai dari makhraj huruf, tajwid, hingga panjang pendek dan adab membaca.</li>
+            <li>Membimbing tahfidz secara bertahap dan sistematis.</li>
+            <li>Memberikan contoh bacaan sesuai qira'ah standar (Hafsh 'an 'Ashim) dan memimpin murojaah berkala.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-item alt2">
+        <div class="t-card">
+          <div class="role">Pembina & Pelatih Kepanduan Putri (Hizbul Wathan)</div>
+          <div class="meta">SMP Muhammadiyah 9 Nagreg • Juli 2018 – Sekarang</div>
+          <ul>
+            <li>Mendampingi perkemahan di dalam dan luar lingkungan sekolah.</li>
+            <li>Membina karakter kader muda Muhammadiyah.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-item alt3">
+        <div class="t-card">
+          <div class="role">Pembina & Pelatih Palang Merah Remaja (PMR)</div>
+          <div class="meta">SMP Muhammadiyah 9 Nagreg • Juli 2020 – Juni 2025</div>
+          <ul>
+            <li>Koordinator Ekstrakurikuler PMR.</li>
+            <li>Meningkatkan keterampilan hidup sehat siswa serta pengabdian di masyarakat.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-card">
+          <div class="role">Guru Bahasa Inggris (PPL/Internship)</div>
+          <div class="meta">SMP Negeri 2 Cileunyi • 2017</div>
+          <ul>
+            <li>Praktik mengajar Bahasa Inggris sebagai bagian dari Program PPL.</li>
+            <li>Mengelola kelas dan menyusun RPP secara mandiri.</li>
+            <li>Menerapkan media pembelajaran berbasis teknologi.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="keahlian">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Keahlian</div>
+      <h2>Kompetensi & Kemampuan</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card sk-1">
+        <div class="icon">📝</div>
+        <h4>Kompetensi Pedagogis</h4>
+        <ul>
+          <li>Perencanaan pembelajaran Bahasa Inggris</li>
+          <li>Penyusunan RPP, Modul Ajar & Penilaian Kompetensi</li>
+        </ul>
+      </div>
+      <div class="skill-card sk-2">
+        <div class="icon">🗣️</div>
+        <h4>Kompetensi Bahasa</h4>
+        <ul>
+          <li>Grammar, Speaking & Listening</li>
+          <li>Writing & Reading</li>
+        </ul>
+      </div>
+      <div class="skill-card sk-3">
+        <div class="icon">📖</div>
+        <h4>Membaca Al-Qur'an</h4>
+        <ul>
+          <li>Tartil sesuai kaidah tajwid</li>
+          <li>Makhraj & sifatul huruf</li>
+          <li>Mampu membaca ayat Gharib</li>
+        </ul>
+      </div>
+    </div>
+    <div class="soft-row">
+      <span class="pill">Public Speaking</span>
+      <span class="pill">Classroom Management</span>
+      <span class="pill">Communication & Interpersonal Skill</span>
+      <span class="pill">Problem Solving</span>
+      <span class="pill">Leadership & Teamwork</span>
+    </div>
+  </div>
+</section>
+
+<section class="edu" id="pendidikan">
+  <div class="wrap">
+    <div class="edu-grid">
+      <div>
+        <div class="sec-head" style="margin-bottom:28px;">
+          <div class="eyebrow">Riwayat</div>
+          <h2>Pendidikan</h2>
+        </div>
+        <div class="edu-list">
+          <div class="edu-item"><div><div class="nm">S1 - Pendidikan Bahasa Inggris</div><div class="inst">UIN Sunan Gunung Djati</div></div><div class="yr">2015 – 2020</div></div>
+          <div class="edu-item"><div><div class="nm">MAN Cijantung Ciamis</div><div class="inst">PonPes Al Quran Cijantung Ciamis</div></div><div class="yr">2012 – 2015</div></div>
+          <div class="edu-item"><div><div class="nm">MTs Harapan Baru</div><div class="inst">PonPes Al Quran Cijantung Ciamis</div></div><div class="yr">2009 – 2012</div></div>
+          <div class="edu-item"><div><div class="nm">MI Al Hidayah Cokroaminoto</div><div class="inst">&nbsp;</div></div><div class="yr">2003 – 2009</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-head" style="margin-bottom:28px;">
+          <div class="eyebrow">Penunjang</div>
+          <h2>Sertifikasi & Pelatihan</h2>
+        </div>
+        <div class="cert-box">
+          <ul>
+            <li>Kemampuan Bahasa Inggris bagi Tenaga Perkantoran Umum — Karier.mu (2022)</li>
+            <li>Menerapkan Manajemen Risiko bagi Pengawas K3 — Karier.mu (2022)</li>
+            <li>English Speak Program — The Language Center, UIN Sunan Gunung Djati Bandung (2018)</li>
+            <li>Training of Digital Academic Writing — UIN Sunan Gunung Djati (2018)</li>
+            <li>English for Other Speaker of Language (PTESOL) — The Language Center, Indonesia University of Education (2017)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech">
+  <div class="wrap">
+    <div class="tech-grid">
+      <div>
+        <div class="eyebrow">Penunjang Mengajar</div>
+        <h3 style="font-size:22px;color:var(--navy);margin-bottom:16px;">Teknologi Pembelajaran</h3>
+        <div class="tag-row">
+          <span class="tag">Microsoft Office (Word, Excel, PowerPoint)</span>
+          <span class="tag">Google Site for Education</span>
+          <span class="tag">Canva</span>
+          <span class="tag">Padlet</span>
+          <span class="tag">Zoom & Google Meet</span>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Kontribusi</div>
+        <h3 style="font-size:22px;color:var(--navy);margin-bottom:16px;">Organisasi</h3>
+        <div class="org-list">
+          <div class="org-item"><span class="yr-tag">2023–Skg</span><p>Nasyiatul 'Aisyiyah Kab. Bandung</p></div>
+          <div class="org-item"><span class="yr-tag">2018–Skg</span><p>Pembina Hizbul Wathan Qobilah SMP Muhammadiyah 9 Nagreg</p></div>
+          <div class="org-item"><span class="yr-tag">2020–2025</span><p>Pembina Palang Merah Remaja (PMR) SMP Muhammadiyah 9 Nagreg</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="materi">
+  <div class="wrap">
+    <div class="cta-materi">
+      <div class="cta-text">
+        <div class="eyebrow">Materi Fortasi</div>
+        <h3>Yuk pelajari materi "Cinta Al-Quran" bersama Mrs. Nuri</h3>
+        <p>Materi khusus program Fortasi untuk menumbuhkan kecintaan siswa terhadap Al-Qur'an, mulai dari adab membaca hingga keutamaan mempelajarinya.</p>
+      </div>
+      <div class="cta-btn-wrap">
+        <a href="cinta-al-quran.html" class="btn-big">📖 Buka Materi Cinta Al-Quran</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg width="14" height="14" style="color:var(--coral)"><use href="#ic-portal"/></svg>
+  &copy; 2026 Mrs. Nuri Frasna Vitara, S.Pd. — English Teacher. All rights reserved.
+</footer>
+
+</body>
+</html>
